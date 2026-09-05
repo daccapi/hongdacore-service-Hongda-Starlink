@@ -1,0 +1,2 @@
+caecf6bd617bd96d1c2c4b820b16b2361d620f39fa6a5177448b704fcdbab778  runtime/service/HongdaService.exe
+140c46d667d16b1491f6b830812e846c25aa2b18e68bd695023c69c393ad7081  service/embedded/sing-box.exe
