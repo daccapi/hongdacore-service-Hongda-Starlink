@@ -1,0 +1,1052 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+
+import 'core_manager.dart';
+import 'models.dart';
+import 'singbox_config_builder.dart';
+import 'storage.dart';
+import 'windows_integration.dart';
+
+enum CoreStatus { stopped, starting, running, stopping, error }
+
+enum StartupStage {
+  idle,
+  locatingService,
+  verifyingService,
+  checkingPermissions,
+  checkingPorts,
+  buildingConfig,
+  validatingConfig,
+  launchingService,
+  waitingCore,
+  waitingApi,
+  handshakingIpc,
+  enablingProxy,
+  connected,
+  failed,
+}
+
+String startupStageLabel(StartupStage stage) {
+  switch (stage) {
+    case StartupStage.idle: return '准备就绪';
+    case StartupStage.locatingService: return '检查服务组件';
+    case StartupStage.verifyingService: return '验证 Service 版本';
+    case StartupStage.checkingPermissions: return '检查系统权限';
+    case StartupStage.checkingPorts: return '检查本地端口';
+    case StartupStage.buildingConfig: return '生成运行配置';
+    case StartupStage.validatingConfig: return '校验 sing-box 配置';
+    case StartupStage.launchingService: return '启动 HongdaService';
+    case StartupStage.waitingCore: return '等待核心进程';
+    case StartupStage.waitingApi: return '等待 Clash API';
+    case StartupStage.handshakingIpc: return '建立 Service IPC';
+    case StartupStage.enablingProxy: return '应用系统代理';
+    case StartupStage.connected: return '连接完成';
+    case StartupStage.failed: return '启动失败';
+  }
+}
+
+double startupStageProgress(StartupStage stage) {
+  switch (stage) {
+    case StartupStage.idle: return 0;
+    case StartupStage.locatingService: return .06;
+    case StartupStage.verifyingService: return .13;
+    case StartupStage.checkingPermissions: return .20;
+    case StartupStage.checkingPorts: return .28;
+    case StartupStage.buildingConfig: return .38;
+    case StartupStage.validatingConfig: return .52;
+    case StartupStage.launchingService: return .64;
+    case StartupStage.waitingCore: return .73;
+    case StartupStage.waitingApi: return .83;
+    case StartupStage.handshakingIpc: return .91;
+    case StartupStage.enablingProxy: return .97;
+    case StartupStage.connected: return 1;
+    case StartupStage.failed: return 1;
+  }
+}
+
+class ServiceStartException implements Exception {
+  const ServiceStartException(this.phase, this.message, {this.detail = ''});
+  final String phase;
+  final String message;
+  final String detail;
+
+  @override
+  String toString() => detail.isEmpty ? '$phase：$message' : '$phase：$message · $detail';
+}
+
+class NeedsElevationException implements Exception {
+  const NeedsElevationException();
+  @override
+  String toString() => 'TUN / Tailscale 系统接口需要管理员权限';
+}
+
+class SingBoxController extends ChangeNotifier {
+  SingBoxController({
+    required this.storage,
+    required this.coreManager,
+    required this.trafficStats,
+  }) : configBuilder = SingBoxConfigBuilder(storage);
+
+  final AppStorage storage;
+  final CoreManager coreManager;
+  final TrafficStats trafficStats;
+  final SingBoxConfigBuilder configBuilder;
+
+  CoreStatus status = CoreStatus.stopped;
+  Process? _process;
+  StreamSubscription<String>? _stdoutSub;
+  StreamSubscription<String>? _stderrSub;
+  Timer? _apiTimer;
+  Timer? _ipcTimer;
+  Timer? _trafficPersistTimer;
+  WebSocket? _trafficSocket;
+  DateTime? _lastTrafficSampleAt;
+  int _ipcSequence = 0;
+  Completer<void>? _readyCompleter;
+  final Map<String, Completer<Map<String, dynamic>>> _ipcPending =
+      <String, Completer<Map<String, dynamic>>>{};
+  final List<String> _stderrTail = <String>[];
+  String _runtimeLogLevel = 'warn';
+
+  final List<String> logs = <String>[];
+  double uploadBytesPerSecond = 0;
+  double downloadBytesPerSecond = 0;
+  int totalUploadBytes = 0;
+  int totalDownloadBytes = 0;
+  int activeConnections = 0;
+  DateTime? connectedAt;
+  String? lastError;
+  bool ipcConnected = false;
+  Map<String, dynamic> serviceInfo = <String, dynamic>{};
+  StartupStage startupStage = StartupStage.idle;
+  String startupDetail = '等待连接';
+  Map<String, dynamic>? lastServiceError;
+  final Set<String> testingNodeIds = <String>{};
+
+  bool get isRunning => status == CoreStatus.running;
+  int get totalTrafficBytes => totalUploadBytes + totalDownloadBytes;
+  int get lifetimeTrafficBytes => trafficStats.totalBytes;
+
+  Future<void> start(
+    NodeProfile selectedNode,
+    AppSettings settings, {
+    List<NodeProfile>? nodes,
+    List<ProxyGroupProfile> groups = const <ProxyGroupProfile>[],
+    List<RouteRuleProfile> rules = const <RouteRuleProfile>[],
+  }) async {
+    if (status == CoreStatus.starting || status == CoreStatus.running) return;
+    lastError = null;
+    lastServiceError = null;
+    _stderrTail.clear();
+    _runtimeLogLevel = settings.logLevel.trim().toLowerCase();
+    status = CoreStatus.starting;
+    _setStartup(StartupStage.locatingService, '正在定位 HongdaService.exe');
+
+    try {
+      final core = await coreManager.findCore();
+      if (core == null) {
+        throw const ServiceStartException(
+          '服务组件',
+          '未找到 HongdaService.exe',
+          detail: '请确认 runtime\\service\\HongdaService.exe 已随程序发布。',
+        );
+      }
+      final serviceFile = File(core);
+      final serviceBytes = await serviceFile.length();
+      if (serviceBytes < 40 * 1024 * 1024) {
+        throw ServiceStartException(
+          '服务组件',
+          'HongdaService.exe 不完整',
+          detail: '当前只有 ${(serviceBytes / 1024 / 1024).toStringAsFixed(1)} MB；V1.6.4 自包含版本应包含内嵌 sing-box 核心。',
+        );
+      }
+      _appendLog('Service: $core · ${(serviceBytes / 1024 / 1024).toStringAsFixed(1)} MB');
+
+      _setStartup(StartupStage.verifyingService, '验证 HongdaService、sing-box 1.13.18 与必要功能');
+      ProcessResult versionResult;
+      ProcessResult featuresResult;
+      try {
+        versionResult = await Process.run(
+          core,
+          <String>['version'],
+          workingDirectory: File(core).parent.path,
+        ).timeout(const Duration(seconds: 20));
+        featuresResult = await Process.run(
+          core,
+          <String>['features'],
+          workingDirectory: File(core).parent.path,
+        ).timeout(const Duration(seconds: 8));
+      } on TimeoutException {
+        throw const ServiceStartException(
+          '服务组件',
+          'HongdaService 自检超时',
+          detail: 'Service 可执行文件存在，但 version/features 在限定时间内没有返回。',
+        );
+      }
+      if (versionResult.exitCode != 0) {
+        throw ServiceStartException(
+          '服务组件',
+          'HongdaService 无法正常运行',
+          detail: _compactError('${versionResult.stderr}\n${versionResult.stdout}'),
+        );
+      }
+      final versionText = '${versionResult.stdout}'.trim();
+      if (!versionText.contains('HongdaService ${CoreManager.serviceVersion}') ||
+          !versionText.contains('1.13.18')) {
+        throw ServiceStartException(
+          '服务组件',
+          'HongdaService 版本不匹配',
+          detail: versionText.isEmpty ? 'version 没有返回版本信息' : versionText,
+        );
+      }
+      if (featuresResult.exitCode != 0) {
+        throw ServiceStartException(
+          '服务组件',
+          '无法读取 HongdaService 功能集',
+          detail: _compactError('${featuresResult.stderr}\n${featuresResult.stdout}'),
+        );
+      }
+      final featureText = '${featuresResult.stdout}'.trim().toLowerCase();
+      const requiredFeatures = <String>['vless', 'reality', 'hysteria2', 'tailscale', 'clash-api'];
+      final advertisedFeatures = featureText.split(',').map((item) => item.trim()).where((item) => item.isNotEmpty).toSet();
+      final missingFeatures = requiredFeatures.where((name) => !advertisedFeatures.contains(name)).toList();
+      if (missingFeatures.isNotEmpty) {
+        throw ServiceStartException(
+          '服务组件',
+          'HongdaService 功能集不完整',
+          detail: '缺少：${missingFeatures.join('、')}',
+        );
+      }
+      _appendLog('Service 版本通过：$versionText');
+      _appendLog('Service 功能集通过：${featuresResult.stdout.toString().trim()}');
+
+      _setStartup(StartupStage.checkingPermissions, '检查 TUN / Tailscale 所需权限');
+      if ((settings.tunEnabled || settings.tailscaleEnabled) &&
+          !await WindowsIntegration.isAdministrator()) {
+        throw const NeedsElevationException();
+      }
+
+      _setStartup(StartupStage.checkingPorts, '检查本地代理与 Clash API 端口');
+      await _ensurePortFree(settings.mixedPort, '本地代理');
+      if (settings.apiPort != settings.mixedPort) {
+        await _ensurePortFree(settings.apiPort, 'Clash API');
+      }
+
+      _setStartup(StartupStage.buildingConfig, '生成节点、规则、TUN 与 DNS 配置');
+      final allNodes = (nodes ?? <NodeProfile>[selectedNode])
+          .where((n) => n.enabled)
+          .toList();
+      if (!allNodes.any((n) => n.id == selectedNode.id)) {
+        allNodes.insert(0, selectedNode);
+      }
+      final config = configBuilder.build(
+        selectedNode: selectedNode,
+        nodes: allNodes,
+        groups: groups,
+        rules: rules,
+        settings: settings,
+      );
+      final configFile = await storage.writeRuntimeConfig(config);
+
+      _setStartup(StartupStage.validatingConfig, '首次启动会校验并释放内嵌 sing-box 1.13.18');
+      _appendLog('Service Doctor：${configFile.path}');
+      final doctor = await Process.run(
+        core,
+        <String>['doctor', '-c', configFile.path],
+        workingDirectory: File(core).parent.path,
+      ).timeout(const Duration(seconds: 35));
+      if (doctor.exitCode != 0) {
+        final parsed = _extractServiceError('${doctor.stderr}\n${doctor.stdout}');
+        if (parsed != null) {
+          throw ServiceStartException(
+            _phaseTitle(parsed['phase']?.toString() ?? '配置校验'),
+            parsed['message']?.toString() ?? 'Service Doctor 失败',
+            detail: parsed['detail']?.toString() ?? '',
+          );
+        }
+        final details = _compactError('${doctor.stderr}\n${doctor.stdout}');
+        throw ServiceStartException('配置校验', 'Service Doctor 失败', detail: details);
+      }
+      _appendLog('Service Doctor 通过');
+
+      _setStartup(StartupStage.launchingService, '正在创建 HongdaService 与 sing-box 子进程');
+      _appendLog('启动 HongdaService（自包含 sing-box）…');
+      _readyCompleter = Completer<void>();
+      final process = await Process.start(
+        core,
+        <String>['run', '-c', configFile.path],
+        workingDirectory: File(core).parent.path,
+      );
+      _process = process;
+
+      _stdoutSub = process.stdout
+          .transform(utf8.decoder)
+          .transform(const LineSplitter())
+          .listen(_handleStdoutLine);
+      _stderrSub = process.stderr
+          .transform(utf8.decoder)
+          .transform(const LineSplitter())
+          .listen(_handleStderrLine);
+
+      unawaited(process.exitCode.then((code) {
+        if (_process == process && status != CoreStatus.stopping) {
+          final details = _compactError(_stderrTail.join('\n'));
+          _appendLog('HongdaService 已退出，代码 $code', error: code != 0);
+          _process = null;
+          status = code == 0 ? CoreStatus.stopped : CoreStatus.error;
+          if (code != 0) {
+            final structured = lastServiceError;
+            if (structured != null) {
+              final phase = _phaseTitle(structured['phase']?.toString() ?? 'HongdaService');
+              final message = structured['message']?.toString() ?? 'HongdaService 异常退出：$code';
+              final detail = structured['detail']?.toString() ?? '';
+              lastError = detail.isEmpty ? '$phase：$message' : '$phase：$message · $detail';
+            } else {
+              lastError = details.isEmpty
+                  ? 'HongdaService 异常退出：$code'
+                  : 'HongdaService 异常退出：$code · $details';
+            }
+          }
+          final pendingReady = _readyCompleter;
+          if (pendingReady != null && !pendingReady.isCompleted) {
+            pendingReady.completeError(StateError(lastError ?? 'HongdaService 已退出'));
+          }
+          _stopMetrics();
+          _stopIpc();
+          unawaited(WindowsIntegration.setSystemProxy(
+            enabled: false,
+            port: settings.mixedPort,
+          ));
+          notifyListeners();
+        }
+      }));
+
+      _setStartup(StartupStage.waitingCore, '等待 HongdaService READY 握手');
+      await _waitForServiceReady(settings);
+      // cache_file 会持久化 selector 选择。启动/重载后显式同步 UI 当前
+      // 选择，避免界面显示新 VLESS、Core 实际仍沿用旧节点。
+      await _selectProxyTag(settings, SingBoxConfigBuilder.nodeTag(selectedNode.id));
+      _setStartup(StartupStage.handshakingIpc, '验证 stdio JSON IPC');
+      await _probeIpc(required: true);
+
+      if (settings.systemProxyEnabled) {
+        _setStartup(StartupStage.enablingProxy, '写入 Windows 系统代理设置');
+        await WindowsIntegration.setSystemProxy(
+          enabled: true,
+          port: settings.mixedPort,
+        );
+      }
+
+      status = CoreStatus.running;
+      _setStartup(StartupStage.connected, 'Service、Core、API 与 IPC 均已就绪');
+      connectedAt = DateTime.now();
+      totalUploadBytes = 0;
+      totalDownloadBytes = 0;
+      _lastTrafficSampleAt = null;
+      _startMetrics(settings);
+      _startIpcHeartbeat();
+      _startTrafficPersistence();
+      _appendLog('连接已建立：${selectedNode.name}');
+      notifyListeners();
+    } catch (e) {
+      await _cleanupFailedStart(settings);
+      status = CoreStatus.error;
+      lastError = _cleanException(e);
+      _setStartup(StartupStage.failed, lastError!);
+      _appendLog(lastError!, error: true);
+      notifyListeners();
+      rethrow;
+    }
+  }
+
+  Future<void> stop(AppSettings settings) async {
+    if (status == CoreStatus.stopped || status == CoreStatus.stopping) return;
+    status = CoreStatus.stopping;
+    notifyListeners();
+    try {
+      await WindowsIntegration.setSystemProxy(
+        enabled: false,
+        port: settings.mixedPort,
+      );
+      _stopMetrics();
+      _stopIpc();
+      _stopTrafficPersistence();
+      await _persistTraffic();
+      final process = _process;
+      _process = null;
+      if (process != null) {
+        try {
+          final id = _nextIpcId();
+          process.stdin.writeln(jsonEncode(<String, dynamic>{
+            'id': id,
+            'method': 'stop',
+          }));
+          await process.stdin.flush();
+          await process.exitCode.timeout(const Duration(seconds: 7));
+        } catch (_) {
+          process.kill();
+          try {
+            await process.exitCode.timeout(const Duration(seconds: 2));
+          } catch (_) {
+            process.kill(ProcessSignal.sigkill);
+          }
+        }
+      }
+      await _stdoutSub?.cancel();
+      await _stderrSub?.cancel();
+      _stdoutSub = null;
+      _stderrSub = null;
+      uploadBytesPerSecond = 0;
+      downloadBytesPerSecond = 0;
+      activeConnections = 0;
+      connectedAt = null;
+      ipcConnected = false;
+      serviceInfo = <String, dynamic>{};
+      status = CoreStatus.stopped;
+      _setStartup(StartupStage.idle, '已断开连接');
+      _appendLog('已停止连接');
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  Future<int?> testNode(
+    NodeProfile node,
+    AppSettings settings, {
+    String? url,
+  }) async {
+    testingNodeIds.add(node.id);
+    notifyListeners();
+    try {
+      if (isRunning) {
+      final tag = SingBoxConfigBuilder.nodeTag(node.id);
+      final target = Uri.encodeQueryComponent(url ?? settings.urlTestUrl);
+      final path =
+          '/proxies/${Uri.encodeComponent(tag)}/delay?timeout=5000&url=$target';
+      try {
+        final json = await _apiJson(settings, 'GET', path);
+        final delay = int.tryParse(json['delay']?.toString() ?? '');
+        if (delay != null && delay > 0) {
+          node.latencyMs = delay;
+          node.lastLatencyTest = DateTime.now();
+          node.testError = null;
+          notifyListeners();
+          return delay;
+        }
+        // Some Clash-compatible APIs use 0 as a failed/unknown delay. Never
+        // present that as a real 0 ms result. The TCP probe below is only a
+        // reachability diagnostic and is never stored as proxy latency.
+        node.testError = delay == null ? '未返回 delay' : 'API 返回无效延迟：$delay ms';
+      } catch (e) {
+        node.testError = _cleanException(e);
+      }
+    }
+
+    final sw = Stopwatch()..start();
+    try {
+      final socket = await Socket.connect(
+        node.server,
+        node.port,
+        timeout: const Duration(seconds: 4),
+      );
+      sw.stop();
+      socket.destroy();
+      final elapsedUs = sw.elapsedMicroseconds;
+      final elapsedMs = elapsedUs <= 0 ? 1 : (elapsedUs + 999) ~/ 1000;
+      node.latencyMs = null;
+      node.lastLatencyTest = DateTime.now();
+      node.testError = 'TCP 端口可达（$elapsedMs ms），但未完成代理握手；连接后可进行真实 URLTest';
+      notifyListeners();
+      return null;
+    } catch (e) {
+      node.latencyMs = null;
+      node.lastLatencyTest = DateTime.now();
+      node.testError = _cleanException(e);
+      notifyListeners();
+      return null;
+    }
+    } finally {
+      testingNodeIds.remove(node.id);
+      notifyListeners();
+    }
+  }
+
+  Future<void> selectNodeRuntime(
+    NodeProfile node,
+    AppSettings settings,
+  ) async {
+    if (!isRunning) return;
+    if (!node.enabled) throw StateError('目标节点已禁用');
+    final tag = SingBoxConfigBuilder.nodeTag(node.id);
+    await _selectProxyTag(settings, tag);
+    _appendLog('运行时切换节点：${node.name} -> $tag');
+  }
+
+  Future<void> _selectProxyTag(AppSettings settings, String tag) async {
+    final before = await _apiJson(settings, 'GET', '/proxies/proxy');
+    final all = (before['all'] as List?)
+            ?.map((item) => item.toString())
+            .toSet() ??
+        <String>{};
+    if (all.isNotEmpty && !all.contains(tag)) {
+      throw StateError('当前运行配置未包含目标节点，需要重载 Core');
+    }
+
+    await _apiJson(
+      settings,
+      'PUT',
+      '/proxies/proxy',
+      body: <String, dynamic>{'name': tag},
+    );
+
+    await Future<void>.delayed(const Duration(milliseconds: 80));
+    final after = await _apiJson(settings, 'GET', '/proxies/proxy');
+    final active = after['now']?.toString() ?? '';
+    if (active.isNotEmpty && active != tag) {
+      throw StateError('Core 未切换到目标节点（当前：$active）');
+    }
+  }
+
+  Future<Map<String, dynamic>> requestServiceStatus() async {
+    final reply = await _sendIpc('status');
+    final result = reply['result'];
+    serviceInfo = result is Map
+        ? Map<String, dynamic>.from(result)
+        : <String, dynamic>{};
+    ipcConnected = reply['ok'] == true;
+    notifyListeners();
+    return serviceInfo;
+  }
+
+  Future<void> _waitForServiceReady(AppSettings settings) async {
+    final ready = _readyCompleter;
+    if (ready == null) throw StateError('Service 启动握手未初始化');
+
+    try {
+      await ready.future.timeout(const Duration(seconds: 12));
+    } on TimeoutException {
+      final stderr = _compactError(_stderrTail.join('\n'));
+      throw ServiceStartException(
+        '核心启动',
+        '12 秒内未收到 HONGDA_READY',
+        detail: stderr,
+      );
+    }
+
+    _setStartup(StartupStage.waitingApi, 'HongdaService 已启动，等待 Clash API ${settings.apiPort}');
+    final deadline = DateTime.now().add(const Duration(seconds: 15));
+    Object? lastProbeError;
+    while (DateTime.now().isBefore(deadline)) {
+      if (_process == null) {
+        final structured = lastServiceError;
+        if (structured != null) {
+          throw ServiceStartException(
+            _phaseTitle(structured['phase']?.toString() ?? '核心启动'),
+            structured['message']?.toString() ?? 'sing-box 已退出',
+            detail: structured['detail']?.toString() ?? '',
+          );
+        }
+        throw StateError(lastError ?? 'HongdaService 启动后立即退出');
+      }
+      try {
+        await _apiJson(settings, 'GET', '/version');
+        _appendLog('Clash API 已就绪：127.0.0.1:${settings.apiPort}');
+        return;
+      } catch (e) {
+        lastProbeError = e;
+      }
+      await Future<void>.delayed(const Duration(milliseconds: 300));
+    }
+
+    final stderr = _compactError(_stderrTail.join('\n'));
+    final probe = lastProbeError == null ? '' : _cleanException(lastProbeError);
+    throw ServiceStartException(
+      'Clash API',
+      '核心进程已启动，但 API 在 15 秒内没有就绪',
+      detail: <String>[if (stderr.isNotEmpty) stderr, if (probe.isNotEmpty) probe].join(' · '),
+    );
+  }
+
+  Future<void> _ensurePortFree(int port, String name) async {
+    if (port < 1 || port > 65535) {
+      throw StateError('$name端口无效：$port');
+    }
+    ServerSocket? socket;
+    try {
+      socket = await ServerSocket.bind(
+        InternetAddress.loopbackIPv4,
+        port,
+        shared: false,
+      );
+    } on SocketException catch (e) {
+      throw StateError('$name端口 $port 已被占用：${e.message}');
+    } finally {
+      await socket?.close();
+    }
+  }
+
+  Future<void> _cleanupFailedStart(AppSettings settings) async {
+    try {
+      await WindowsIntegration.setSystemProxy(
+        enabled: false,
+        port: settings.mixedPort,
+      );
+    } catch (_) {}
+    _stopMetrics();
+    _stopTrafficPersistence();
+
+    final process = _process;
+    if (process != null) {
+      try {
+        final id = _nextIpcId();
+        process.stdin.writeln(jsonEncode(<String, dynamic>{
+          'id': id,
+          'method': 'stop',
+        }));
+        await process.stdin.flush();
+        await process.exitCode.timeout(const Duration(seconds: 4));
+      } catch (_) {
+        try {
+          process.kill();
+          await process.exitCode.timeout(const Duration(seconds: 2));
+        } catch (_) {
+          try {
+            process.kill(ProcessSignal.sigkill);
+          } catch (_) {}
+        }
+      }
+    }
+    _process = null;
+    _stopIpc();
+    await _stdoutSub?.cancel();
+    await _stderrSub?.cancel();
+    _stdoutSub = null;
+    _stderrSub = null;
+  }
+
+  void _handleStderrLine(String line) {
+    final cleaned = _stripAnsi(line).trim();
+    if (cleaned.isEmpty) return;
+
+    final lower = cleaned.toLowerCase();
+    final isServiceError = cleaned.startsWith('HONGDA_ERROR ');
+    final isActualError = isServiceError ||
+        lower.contains(' error[') ||
+        lower.contains(' fatal[') ||
+        lower.contains(' panic') ||
+        lower.contains(' level=error');
+
+    _stderrTail.add(cleaned);
+    if (_stderrTail.length > 18) _stderrTail.removeAt(0);
+
+    if (isServiceError) {
+      final payload = cleaned.substring('HONGDA_ERROR '.length).trim();
+      try {
+        final decoded = jsonDecode(payload);
+        if (decoded is Map) {
+          final incoming = Map<String, dynamic>.from(decoded);
+          if (_shouldReplaceServiceError(lastServiceError, incoming)) {
+            lastServiceError = incoming;
+          }
+          final selected = lastServiceError ?? incoming;
+          final phase = _phaseTitle(selected['phase']?.toString() ?? 'Service');
+          final message = selected['message']?.toString() ?? '未知错误';
+          final detail = selected['detail']?.toString() ?? '';
+          startupDetail = detail.isEmpty ? '$phase：$message' : '$phase：$message · $detail';
+        }
+      } catch (_) {}
+    }
+
+    // HongdaService deliberately forwards sing-box stdout/stderr through its
+    // stderr pipe so stdout stays reserved for READY/IPC frames. Therefore a
+    // line arriving on stderr is not automatically an error. Also suppress
+    // per-packet INFO chatter unless the user explicitly selected debug/trace.
+    final verbose = _runtimeLogLevel == 'debug' || _runtimeLogLevel == 'trace';
+    final routineTraffic = lower.contains('inbound packet connection') ||
+        lower.contains('outbound packet connection') ||
+        lower.contains('inbound connection from') ||
+        lower.contains('inbound connection to') ||
+        lower.contains('outbound connection to');
+    if (routineTraffic && !verbose && !isActualError) return;
+
+    _appendLog(cleaned, error: isActualError);
+  }
+
+  void _handleStdoutLine(String line) {
+    if (line.startsWith('HONGDA_IPC ')) {
+      try {
+        final payload = jsonDecode(line.substring('HONGDA_IPC '.length));
+        if (payload is Map) {
+          final map = Map<String, dynamic>.from(payload);
+          final id = map['id']?.toString();
+          if (id != null) {
+            final completer = _ipcPending.remove(id);
+            if (completer != null && !completer.isCompleted) {
+              completer.complete(map);
+            }
+          }
+          ipcConnected = true;
+          notifyListeners();
+          return;
+        }
+      } catch (_) {
+        // Malformed IPC is surfaced as a normal log line below.
+      }
+    }
+    if (line.startsWith('HONGDA_READY')) {
+      final ready = _readyCompleter;
+      if (ready != null && !ready.isCompleted) ready.complete();
+      _appendLog('HongdaService 已就绪');
+      return;
+    }
+    _appendLog(line);
+  }
+
+  Future<void> _probeIpc({bool required = false}) async {
+    try {
+      final reply = await _sendIpc(
+        'ping',
+        timeout: const Duration(seconds: 3),
+      );
+      ipcConnected = reply['ok'] == true;
+      if (!ipcConnected) throw StateError('IPC ping 返回失败');
+      await requestServiceStatus();
+      _appendLog('Service IPC 已连接');
+    } catch (e) {
+      ipcConnected = false;
+      if (required) {
+        throw StateError('Service IPC 握手失败：${_cleanException(e)}');
+      }
+      _appendLog('Service IPC 未响应', error: true);
+    }
+  }
+
+  void _startIpcHeartbeat() {
+    _ipcTimer?.cancel();
+    _ipcTimer = Timer.periodic(const Duration(seconds: 8), (_) async {
+      if (_process == null) return;
+      try {
+        final reply = await _sendIpc(
+          'ping',
+          timeout: const Duration(seconds: 2),
+        );
+        final connected = reply['ok'] == true;
+        if (ipcConnected != connected) {
+          ipcConnected = connected;
+          notifyListeners();
+        }
+      } catch (_) {
+        if (ipcConnected) {
+          ipcConnected = false;
+          notifyListeners();
+        }
+      }
+    });
+  }
+
+  void _stopIpc() {
+    _ipcTimer?.cancel();
+    _ipcTimer = null;
+    for (final completer in _ipcPending.values) {
+      if (!completer.isCompleted) {
+        completer.completeError(StateError('Service IPC stopped'));
+      }
+    }
+    _ipcPending.clear();
+    ipcConnected = false;
+  }
+
+  Future<Map<String, dynamic>> _sendIpc(
+    String method, {
+    Map<String, dynamic>? params,
+    Duration timeout = const Duration(seconds: 3),
+  }) async {
+    final process = _process;
+    if (process == null) throw StateError('HongdaService 未运行');
+    final id = _nextIpcId();
+    final completer = Completer<Map<String, dynamic>>();
+    _ipcPending[id] = completer;
+    process.stdin.writeln(jsonEncode(<String, dynamic>{
+      'id': id,
+      'method': method,
+      if (params != null) 'params': params,
+    }));
+    await process.stdin.flush();
+    try {
+      return await completer.future.timeout(timeout);
+    } finally {
+      _ipcPending.remove(id);
+    }
+  }
+
+  String _nextIpcId() =>
+      'ipc-${DateTime.now().microsecondsSinceEpoch}-${_ipcSequence++}';
+
+  String _stripAnsi(String value) =>
+      value.replaceAll(RegExp(r'\x1B\[[0-9;?]*[ -/]*[@-~]'), '');
+
+  void _appendLog(String line, {bool error = false}) {
+    final now = DateTime.now().toIso8601String();
+    final clock = now.length >= 19 ? now.substring(11, 19) : now;
+    final text = '[$clock] ${error ? '[ERR] ' : ''}$line';
+    logs.add(text);
+    if (logs.length > 1500) logs.removeRange(0, logs.length - 1200);
+    notifyListeners();
+  }
+
+  void _startMetrics(AppSettings settings) {
+    _stopMetrics();
+    _connectTraffic(settings);
+    _apiTimer = Timer.periodic(
+      const Duration(seconds: 2),
+      (_) => _pollConnections(settings),
+    );
+  }
+
+  void _stopMetrics() {
+    _apiTimer?.cancel();
+    _apiTimer = null;
+    _trafficSocket?.close();
+    _trafficSocket = null;
+    _lastTrafficSampleAt = null;
+  }
+
+  void _startTrafficPersistence() {
+    _trafficPersistTimer?.cancel();
+    _trafficPersistTimer = Timer.periodic(
+      const Duration(seconds: 15),
+      (_) => unawaited(_persistTraffic()),
+    );
+  }
+
+  void _stopTrafficPersistence() {
+    _trafficPersistTimer?.cancel();
+    _trafficPersistTimer = null;
+  }
+
+  Future<void> _persistTraffic() async {
+    try {
+      await storage.saveTrafficStats(trafficStats);
+    } catch (_) {
+      // Traffic persistence should never disconnect the tunnel.
+    }
+  }
+
+  Future<void> _connectTraffic(AppSettings settings) async {
+    try {
+      final headers = <String, dynamic>{};
+      if (settings.clashApiSecret.isNotEmpty) {
+        headers['Authorization'] = 'Bearer ${settings.clashApiSecret}';
+      }
+      final socket = await WebSocket.connect(
+        'ws://127.0.0.1:${settings.apiPort}/traffic',
+        headers: headers,
+      );
+      _trafficSocket = socket;
+      _lastTrafficSampleAt = DateTime.now();
+      socket.listen(
+        (data) {
+          try {
+            final json = jsonDecode(data.toString());
+            if (json is Map) {
+              final now = DateTime.now();
+              final previous = _lastTrafficSampleAt ?? now;
+              final elapsed = now.difference(previous).inMilliseconds / 1000.0;
+              _lastTrafficSampleAt = now;
+              uploadBytesPerSecond =
+                  (json['up'] as num?)?.toDouble() ?? 0;
+              downloadBytesPerSecond =
+                  (json['down'] as num?)?.toDouble() ?? 0;
+              final boundedElapsed = elapsed.clamp(0.25, 3.0);
+              final up = (uploadBytesPerSecond * boundedElapsed).round();
+              final down = (downloadBytesPerSecond * boundedElapsed).round();
+              totalUploadBytes += up;
+              totalDownloadBytes += down;
+              trafficStats.add(upload: up, download: down, at: now);
+              notifyListeners();
+            }
+          } catch (_) {}
+        },
+        onDone: () {
+          if (isRunning) {
+            Future<void>.delayed(
+              const Duration(seconds: 2),
+              () => _connectTraffic(settings),
+            );
+          }
+        },
+        onError: (_) {},
+        cancelOnError: true,
+      );
+    } catch (_) {
+      if (isRunning) {
+        Future<void>.delayed(
+          const Duration(seconds: 2),
+          () => _connectTraffic(settings),
+        );
+      }
+    }
+  }
+
+  Future<void> _pollConnections(AppSettings settings) async {
+    if (!isRunning) return;
+    try {
+      final json = await _apiJson(settings, 'GET', '/connections');
+      if (json['connections'] is List) {
+        activeConnections = (json['connections'] as List).length;
+        notifyListeners();
+      }
+    } catch (_) {
+      // Metrics are optional; a failed poll must not affect the tunnel.
+    }
+  }
+
+  Future<Map<String, dynamic>> _apiJson(
+    AppSettings settings,
+    String method,
+    String path, {
+    Map<String, dynamic>? body,
+  }) async {
+    final client = HttpClient()
+      ..connectionTimeout = const Duration(seconds: 3);
+    try {
+      final uri = Uri.parse('http://127.0.0.1:${settings.apiPort}$path');
+      late HttpClientRequest request;
+      switch (method) {
+        case 'PUT':
+          request = await client.putUrl(uri);
+          break;
+        case 'POST':
+          request = await client.postUrl(uri);
+          break;
+        case 'DELETE':
+          request = await client.deleteUrl(uri);
+          break;
+        default:
+          request = await client.getUrl(uri);
+          break;
+      }
+      if (settings.clashApiSecret.isNotEmpty) {
+        request.headers.set(
+          HttpHeaders.authorizationHeader,
+          'Bearer ${settings.clashApiSecret}',
+        );
+      }
+      if (body != null) {
+        request.headers.contentType = ContentType.json;
+        request.write(jsonEncode(body));
+      }
+      final response =
+          await request.close().timeout(const Duration(seconds: 6));
+      final text = await response.transform(utf8.decoder).join();
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        throw HttpException(
+          'Clash API ${response.statusCode}: $text',
+          uri: uri,
+        );
+      }
+      if (text.trim().isEmpty) return <String, dynamic>{};
+      final decoded = jsonDecode(text);
+      return decoded is Map
+          ? Map<String, dynamic>.from(decoded)
+          : <String, dynamic>{'data': decoded};
+    } finally {
+      client.close(force: true);
+    }
+  }
+
+  void _setStartup(StartupStage stage, String detail) {
+    startupStage = stage;
+    startupDetail = detail;
+    notifyListeners();
+  }
+
+  Map<String, dynamic>? _extractServiceError(String text) {
+    Map<String, dynamic>? selected;
+    for (final raw in text.replaceAll('\r', '').split('\n')) {
+      final line = raw.trim();
+      if (!line.startsWith('HONGDA_ERROR ')) continue;
+      try {
+        final decoded = jsonDecode(line.substring('HONGDA_ERROR '.length));
+        if (decoded is Map) {
+          final incoming = Map<String, dynamic>.from(decoded);
+          if (_shouldReplaceServiceError(selected, incoming)) selected = incoming;
+        }
+      } catch (_) {}
+    }
+    return selected;
+  }
+
+  bool _shouldReplaceServiceError(
+    Map<String, dynamic>? current,
+    Map<String, dynamic> incoming,
+  ) {
+    if (current == null) return true;
+    return _serviceErrorPriority(incoming['phase']?.toString() ?? '') >=
+        _serviceErrorPriority(current['phase']?.toString() ?? '');
+  }
+
+  int _serviceErrorPriority(String phase) {
+    switch (phase) {
+      case 'service':
+        return 0;
+      case 'core_exit':
+        return 2;
+      case 'core_extract':
+      case 'config_path':
+      case 'config_missing':
+      case 'config_check':
+      case 'core_pipe':
+      case 'core_start':
+      case 'core_supervision':
+        return 3;
+      default:
+        return 1;
+    }
+  }
+
+  String _phaseTitle(String phase) {
+    switch (phase) {
+      case 'core_extract': return '内嵌核心释放';
+      case 'config_path': return '配置路径';
+      case 'config_missing': return '配置文件';
+      case 'config_check': return '配置校验';
+      case 'core_pipe': return '核心管道';
+      case 'core_start': return '核心启动';
+      case 'core_exit': return '核心进程';
+      case 'core_supervision': return '核心进程监管';
+      case 'service': return 'HongdaService';
+      default: return phase.isEmpty ? 'HongdaService' : phase;
+    }
+  }
+
+  String _compactError(String text) {
+    final lines = text
+        .replaceAll('\r', '')
+        .split('\n')
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .toList();
+    if (lines.isEmpty) return '';
+    final joined = lines.take(5).join(' | ');
+    return joined.length > 420 ? '${joined.substring(0, 420)}…' : joined;
+  }
+
+  String _cleanException(Object error) => error
+      .toString()
+      .replaceFirst('Bad state: ', '')
+      .replaceFirst('Exception: ', '');
+
+  @override
+  void dispose() {
+    _stopMetrics();
+    _stopIpc();
+    _stopTrafficPersistence();
+    _stdoutSub?.cancel();
+    _stderrSub?.cancel();
+    super.dispose();
+  }
+}
