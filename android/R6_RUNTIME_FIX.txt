@@ -1,0 +1,11 @@
+Hongda Starlink Android R6 Runtime Fix
+
+1. Android 13+ VpnService route fallback: add 0.0.0.0/0 and ::/0 when libbox provides no explicit route prefixes.
+2. Add Android LocalDNSTransport backed by DnsResolver on the physical (NOT_VPN) network.
+3. Capture/track the underlying physical network before HongdaCore starts.
+4. Android config mode always enables TUN and removes Windows-only interface names / synthetic-peer reject rule.
+5. Runtime READY now requires an established TUN and at least one route; diagnostics expose route counts, DNS, and interface.
+6. Node latency no longer falls back to TCP and pretends TCP reachability is proxy delay. Connected nodes use real Clash URLTest only.
+7. Hysteria/Hysteria2/TUIC explain that disconnected TCP probing is invalid; a real URLTest runs automatically after connection.
+
+Build ID: V1.6.4-R2-Android-CoreBridge-R6-RuntimeFix-20260813
