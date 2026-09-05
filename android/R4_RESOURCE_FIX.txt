@@ -1,0 +1,8 @@
+V1.6.4-R2 Android CoreBridge R4 ResourceFix
+
+Fixes:
+- Android AAPT resource linking failure in drawable/launch_background.xml and drawable-v21/launch_background.xml.
+- Replaces invalid <item android:drawable="#F7FAFF"/> with a nested rectangle shape + solid color.
+- Preserves R3 patched gomobile Windows environment fix.
+- Preserves HongdaCore.aar / libhongdacore.so naming and Flutter onFieldSubmitted fix.
+- Adds BUILD-ANDROID-RELEASE-SKIP-CORE.cmd so an already-built HongdaCore.aar can be reused.
