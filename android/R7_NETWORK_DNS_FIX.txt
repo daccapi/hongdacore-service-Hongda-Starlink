@@ -1,0 +1,19 @@
+Hongda Starlink Android R7 Network/DNS Fix
+Build ID: V1.6.4-R2-Android-CoreBridge-R8-GlobalCaptureFix-20260813
+
+1. Replaced generic physical-network listener with sing-box-for-android style default-network selection:
+   - API 31+: registerBestMatchingNetworkCallback
+   - API 28-30: requestNetwork
+   - API 26-27: registerDefaultNetworkCallback
+   - filters VPN interfaces and stale/non-Internet networks
+2. Physical DNS resolver now always validates/reacquires a non-VPN underlying network.
+3. Runtime snapshot now exposes physical network type, interface, physical DNS, DNS events/errors, DNS query count and protected socket count.
+4. Added automatic post-connect diagnostics:
+   - Core URLTest through selected outbound
+   - IP-only TUN test (no DNS)
+   - TUN DNS lookup
+   - Full domain HTTP probe
+   This distinguishes node/core, TUN routing, DNS, and full proxy failures.
+5. Android local DNS config explicitly uses the libbox platform LocalDNSTransport.
+
+No HongdaCore rebuild is required if R5/R6 HongdaCore.aar is already built.

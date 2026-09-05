@@ -1,0 +1,9 @@
+Hongda Starlink V1.6.4 R2 Android CoreBridge R5 Kotlin Fix
+
+Fixes after R4 resource linking passed:
+1. HongdaCoreRuntime.kt no longer depends on generated BuildConfig; debug mode uses ApplicationInfo.FLAG_DEBUGGABLE.
+2. Android 13+ route/excludeRoute conversion now follows sing-box-for-android upstream: RoutePrefix -> IpPrefix(InetAddress, prefixLength).
+3. Preserves R3 gomobile Windows pseudo-environment fix, R4 launch resource fix, AAR validation, and Flutter TextFormField fix.
+4. BUILD-ID synchronized across marker and CMD/PowerShell entrypoints.
+
+For fastest retry, copy the already-built android/app/libs/HongdaCore.aar from R4 into the same path in R5, then run BUILD-ANDROID-RELEASE-SKIP-CORE.cmd.

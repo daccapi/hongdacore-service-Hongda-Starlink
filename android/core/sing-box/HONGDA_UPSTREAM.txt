@@ -1,0 +1,6 @@
+Upstream: SagerNet/sing-box
+Pinned tag: v1.13.18
+Pinned commit: 45ca32dcb966f07f97fc888fe8586e359dbe8405
+Hongda changes in this vendored snapshot:
+- cmd/internal/build_hongdacore: custom gomobile AAR builder
+- cmd/internal/build_shared/sdk.go: Windows PATH separator portability fix
