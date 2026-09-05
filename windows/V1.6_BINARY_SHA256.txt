@@ -1,0 +1,2 @@
+80de375310e47ab2a0a388fd57bfeaf6d2e2fe01b78377c57c43e59e3ef90f3c  runtime/service/HongdaService.exe
+b35cafb5721fe2ebc6b87274fd68fe434b1f670c86c481826f7ec1fcb397fbf6  service/embedded/HongdaCore.exe

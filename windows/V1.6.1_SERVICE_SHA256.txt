@@ -1,0 +1,2 @@
+# Historical V1.6.1 service hash; current V1.6.3 uses V1.6.3_SERVICE_SHA256.txt.
+d2ed8b2488a0c95e46dcc8952d0b8bfb32cf2bf66202ac7511a285b58611d9eb  runtime/service/HongdaService.exe
