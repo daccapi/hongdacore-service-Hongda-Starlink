@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+set -e
+DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+WRAPPER="$DIR/gradle/wrapper/gradle-wrapper.jar"
+if [ ! -f "$WRAPPER" ]; then
+  echo "[Hongda] Downloading official Gradle 8.13 wrapper bootstrap..."
+  if command -v curl >/dev/null 2>&1; then
+    curl -fL "https://raw.githubusercontent.com/gradle/gradle/v8.13.0/gradle/wrapper/gradle-wrapper.jar" -o "$WRAPPER"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -O "$WRAPPER" "https://raw.githubusercontent.com/gradle/gradle/v8.13.0/gradle/wrapper/gradle-wrapper.jar"
+  else
+    echo "curl/wget not found; install Gradle wrapper jar manually." >&2
+    exit 1
+  fi
+fi
+exec java -classpath "$WRAPPER" org.gradle.wrapper.GradleWrapperMain "$@"
