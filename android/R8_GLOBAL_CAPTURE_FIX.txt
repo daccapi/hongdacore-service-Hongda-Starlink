@@ -1,0 +1,20 @@
+Hongda Starlink Android R8 - Global Capture Fix
+
+Problem reproduced by R7 diagnostics:
+- HongdaCore/URLTest works
+- Android TUN IP/DNS/full HTTP diagnostics work from the Hongda process
+- other phone applications still do not use the proxy
+
+R8 changes:
+1. Force VpnService whole-device capture. Android Builder always installs 0.0.0.0/0 and ::/0 when the corresponding TUN address family exists.
+2. Do not apply libbox includePackage/excludePackage lists in this edition. The app has no per-app VPN UI yet, so accidental package filters can create a Hongda-only VPN. Requested filters are recorded only for diagnostics.
+3. Do not apply VpnService route-exclude prefixes. LAN/direct routing remains a sing-box route decision inside the TUN instead of bypassing Android VPN capture.
+4. Runtime snapshot/logs now report VPN capture mode, applied default routes, core-requested routes, ignored app filters, and protected-socket count.
+5. Existing R7 physical-network/DNS fixes, R6 real URLTest, patched gomobile build, and HongdaCore branding remain unchanged.
+
+Expected runtime log:
+VPN 接管：GLOBAL · Routes=0.0.0.0/0,::/0 ...
+诊断 VPN 接管：GLOBAL · Routes=0.0.0.0/0,::/0 · protect=N
+
+Build:
+Copy a previously successful android/app/libs/HongdaCore.aar into this tree, then run BUILD-ANDROID-RELEASE-SKIP-CORE.cmd.
