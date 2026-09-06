@@ -1,0 +1,1359 @@
+{
+  "schema": 1,
+  "catalog_version": "1.0.0",
+  "current": {
+    "windows": "windows-v1.6.25",
+    "android": "android-v1.6.5",
+    "core": "core-v1.10.12"
+  },
+  "releases": [
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge",
+      "tag": "android-v1.6.4-corebridge",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-Source.zip",
+          "kind": "source",
+          "bytes": 3245062,
+          "sha256": "6d758dbe2f714e23004514a8a1342395fbd81abb9fac137ce55caba3b70aaed4",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-fluttercompilefix",
+      "tag": "android-v1.6.4-corebridge-fluttercompilefix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-FlutterCompileFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-FlutterCompileFix-Source.zip",
+          "kind": "source",
+          "bytes": 3293927,
+          "sha256": "72d7f622fd14e8fb0d2ffb82f509789b58c3ed51d77093eaad5a32ec2ddd93e5",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-fluttercompilefix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-FlutterCompileFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-fluttercompilefix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r3-gomobilefix",
+      "tag": "android-v1.6.4-corebridge-r3-gomobilefix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R3-GomobileFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R3-GomobileFix-Source.zip",
+          "kind": "source",
+          "bytes": 3163826,
+          "sha256": "f3d5d6757ae673139eba65b2c5127e25d9acb7e8d6555799d11e2eaa2262bc9d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r3-gomobilefix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R3-GomobileFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r3-gomobilefix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r4-resourcefix",
+      "tag": "android-v1.6.4-corebridge-r4-resourcefix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R4-ResourceFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R4-ResourceFix-Source.zip",
+          "kind": "source",
+          "bytes": 3287552,
+          "sha256": "ec37cd5fea1eba58bfde20e2c628059103cd830bd9a4df0c9bc363a5fdf244e2",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r4-resourcefix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R4-ResourceFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r4-resourcefix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r5-kotlinfix",
+      "tag": "android-v1.6.4-corebridge-r5-kotlinfix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R5-KotlinFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R5-KotlinFix-Source.zip",
+          "kind": "source",
+          "bytes": 3283206,
+          "sha256": "4921b1d0df41be0ca9b643323a78973e33ce175395767917b763cb8a60eb75c3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r5-kotlinfix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R5-KotlinFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r5-kotlinfix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r6-runtimefix",
+      "tag": "android-v1.6.4-corebridge-r6-runtimefix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R6-RuntimeFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R6-RuntimeFix-Source.zip",
+          "kind": "source",
+          "bytes": 3288916,
+          "sha256": "ef04411c3fd79d545b9d43a007cebb6e9a6d69974ad8b6bf0ca38e76a5bc9025",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r6-runtimefix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R6-RuntimeFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r6-runtimefix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r7-networkdnsfix",
+      "tag": "android-v1.6.4-corebridge-r7-networkdnsfix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R7-NetworkDnsFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R7-NetworkDnsFix-Source.zip",
+          "kind": "source",
+          "bytes": 3299679,
+          "sha256": "d996f4a6c5f0b5a7eb8e665c77a13e539ef127bc1fde080b4635d0a53f013bef",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r7-networkdnsfix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R7-NetworkDnsFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r7-networkdnsfix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r8-globalcapturefix",
+      "tag": "android-v1.6.4-corebridge-r8-globalcapturefix",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R8-GlobalCaptureFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R8-GlobalCaptureFix-Source.zip",
+          "kind": "source",
+          "bytes": 3308245,
+          "sha256": "e3749e1b31c56ed809a67edf51839980d769b706d35704a902bfd77c9d3706e2",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r8-globalcapturefix/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R8-GlobalCaptureFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r8-globalcapturefix"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-corebridge-r9-karingcompat",
+      "tag": "android-v1.6.4-corebridge-r9-karingcompat",
+      "source": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R9-KaringCompat-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R9-KaringCompat-Source.zip",
+          "kind": "source",
+          "bytes": 3180889,
+          "sha256": "972a2d28643f00fe634bbec8512af8d94d03dff088f7f19ced3ad0cbc3d0073a",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-corebridge-r9-karingcompat/Hongda-Starlink-V1.6.4-R2-Android-CoreBridge-R9-KaringCompat-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-corebridge-r9-karingcompat"
+    },
+    {
+      "component": "android",
+      "version": "1.6.4-source-codeonly",
+      "tag": "android-v1.6.4-source-codeonly",
+      "source": "Hongda-Starlink-V1.6.4-Android-Source-CodeOnly.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-Android-Source-CodeOnly.zip",
+          "kind": "source",
+          "bytes": 1617451,
+          "sha256": "6550899bb617ee3051ef7118b489af7586948b057d35254918cc7a01cde28f21",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.4-source-codeonly/Hongda-Starlink-V1.6.4-Android-Source-CodeOnly.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.4-source-codeonly"
+    },
+    {
+      "component": "android",
+      "version": "1.6.5",
+      "tag": "android-v1.6.5",
+      "source": "Hongda-Starlink-V1.6.5-Android-R9-HongdaCore-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.5-Android-arm64.apk",
+          "kind": "android-apk",
+          "bytes": 81130203,
+          "sha256": "62e3974bdab2ad2ec0d243870a451b1b0141e3e45e0449a52764928faf4368a1",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.5/Hongda-Starlink-V1.6.5-Android-arm64.apk"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.5-Android-R9-HongdaCore-Source.zip",
+          "kind": "source",
+          "bytes": 25852774,
+          "sha256": "eaa29edb3c927f1e62b4ca023f0b2d41f4582233ca37692930cd56bb3cfe1cf2",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/android-v1.6.5/Hongda-Starlink-V1.6.5-Android-R9-HongdaCore-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.5"
+    },
+    {
+      "component": "core",
+      "version": "1.1.0",
+      "tag": "core-v1.1.0",
+      "source": "HongdaCore-1.1.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.1.0-Source.zip",
+          "kind": "source",
+          "bytes": 42986,
+          "sha256": "5ca0fcb93b54d1fbd8ecfea05d69f8c640c9db9aa9dab8b266fa1108f4212b40",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.1.0/HongdaCore-1.1.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.1.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6853353,
+          "sha256": "bbeca85f00542fe7dd4e846f76410ffaa95cad92694ee98fab8ab36d927e8a64",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.1.0/HongdaCore-1.1.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.1.0"
+    },
+    {
+      "component": "core",
+      "version": "1.2.0",
+      "tag": "core-v1.2.0",
+      "source": "HongdaCore-1.2.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.2.0-Source.zip",
+          "kind": "source",
+          "bytes": 43130,
+          "sha256": "de4eba38295179b3c2e1a35cdb6c863369401140cdf9b60e182fdcd4e5b710f1",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.2.0/HongdaCore-1.2.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.2.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6853495,
+          "sha256": "66d20cef2fc30e35d6466a9ace85c4942cdec810b23a763f34daf63ac614d6aa",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.2.0/HongdaCore-1.2.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.2.0"
+    },
+    {
+      "component": "core",
+      "version": "1.3.0",
+      "tag": "core-v1.3.0",
+      "source": "HongdaCore-1.3.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.3.0-Source.zip",
+          "kind": "source",
+          "bytes": 44867,
+          "sha256": "6dfe6c7f0cb35f076efe5db9765ef2ed2d119aabb32d9f63c9e9f298adfbc814",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.3.0/HongdaCore-1.3.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.3.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6878584,
+          "sha256": "5520536d9e834349676800d5710498e04c614919a3fde46b6827c163beeb9ae6",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.3.0/HongdaCore-1.3.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.3.0"
+    },
+    {
+      "component": "core",
+      "version": "1.4.0",
+      "tag": "core-v1.4.0",
+      "source": "HongdaCore-1.4.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.4.0-Source.zip",
+          "kind": "source",
+          "bytes": 46810,
+          "sha256": "073bbfededd7b397597024c5c6eec2b54014c7cf6636347c7f202bef0d456821",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.4.0/HongdaCore-1.4.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.4.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6891360,
+          "sha256": "dcff9cfe3b2fa92b3425ecfd74db4c7f4f1ee110230e21dbf8ed89500c7370c4",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.4.0/HongdaCore-1.4.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.4.0"
+    },
+    {
+      "component": "core",
+      "version": "1.4.1",
+      "tag": "core-v1.4.1",
+      "source": "HongdaCore-1.4.1-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.4.1-Source.zip",
+          "kind": "source",
+          "bytes": 48240,
+          "sha256": "6c12fe91f604db3daa51a915097f7150b99116c3f082a559381614e7e95cd3cd",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.4.1/HongdaCore-1.4.1-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.4.1-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6892956,
+          "sha256": "2e41938b47fec8391c53dd9707ef791dd9cc62c6ca840587ec41fcf16d53d407",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.4.1/HongdaCore-1.4.1-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.4.1"
+    },
+    {
+      "component": "core",
+      "version": "1.5.0",
+      "tag": "core-v1.5.0",
+      "source": "HongdaCore-1.5.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.5.0-Source.zip",
+          "kind": "source",
+          "bytes": 51367,
+          "sha256": "3e91ef739f02fc309432e6298783e589083d9dfda8e4b61729977de1eb7eb78b",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.5.0/HongdaCore-1.5.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.5.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6902255,
+          "sha256": "09742a4883623b782394ea7cd947ce7fb9ce20758083d686d8f9970307f50dac",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.5.0/HongdaCore-1.5.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.5.0"
+    },
+    {
+      "component": "core",
+      "version": "1.6.0",
+      "tag": "core-v1.6.0",
+      "source": "HongdaCore-1.6.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.6.0-Source.zip",
+          "kind": "source",
+          "bytes": 56726,
+          "sha256": "e15e676504dfed074c6b3b8f98549503ea6e3a25959dc856a863f14b46606db8",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.6.0/HongdaCore-1.6.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.6.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 8131503,
+          "sha256": "30e77c6e853b794035a4def0a947d5a44694f3c067e6a5073ff89ac1d890ee8e",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.6.0/HongdaCore-1.6.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.6.0"
+    },
+    {
+      "component": "core",
+      "version": "1.7.0",
+      "tag": "core-v1.7.0",
+      "source": "HongdaCore-1.7.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.7.0-Source.zip",
+          "kind": "source",
+          "bytes": 61766,
+          "sha256": "23b721acc7ad31b87a2008d557580e6fb0bb7a79e31e0babf01032fe2a956aab",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.7.0/HongdaCore-1.7.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.7.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 8157582,
+          "sha256": "be09790c5e65f593e54d9aacf696383f566d4bff589301cf33ba99360a326bce",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.7.0/HongdaCore-1.7.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.7.0"
+    },
+    {
+      "component": "core",
+      "version": "1.8.0",
+      "tag": "core-v1.8.0",
+      "source": "HongdaCore-1.8.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.8.0-Source.zip",
+          "kind": "source",
+          "bytes": 66310,
+          "sha256": "c7f2340161cd6fde9eab26975ab6f0ef5bceddcb4867f5fcb16212e2ff74d6d3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.8.0/HongdaCore-1.8.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.8.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 8173060,
+          "sha256": "4dee478938bfca8f5ec4de24d27cbc273f06c93ce9236ee22d17e046ed1ed521",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.8.0/HongdaCore-1.8.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.8.0"
+    },
+    {
+      "component": "core",
+      "version": "1.8.1",
+      "tag": "core-v1.8.1",
+      "source": "HongdaCore-1.8.1-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.8.1-Source.zip",
+          "kind": "source",
+          "bytes": 82561,
+          "sha256": "ffc015eae443d6d7eb066063dc52732f4769e922b588719638180655c32be8ac",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.8.1/HongdaCore-1.8.1-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.8.1-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 4301175,
+          "sha256": "24b249ca90909fe116962d57032e02c5a8d6a72f0b405bdfb78853fb02e5db49",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.8.1/HongdaCore-1.8.1-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.8.1"
+    },
+    {
+      "component": "core",
+      "version": "1.9.0",
+      "tag": "core-v1.9.0",
+      "source": "HongdaCore-1.9.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.9.0-Source.zip",
+          "kind": "source",
+          "bytes": 111184,
+          "sha256": "c68158345b275f33dc2cf687a2b5498bae3369916d661598bb2bf299079e47dc",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.9.0/HongdaCore-1.9.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.9.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5936092,
+          "sha256": "2790c72685e4a368f14ff9102eef592da5a94cb50d5e3a2c6e4494a65fb121c6",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.9.0/HongdaCore-1.9.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.9.0"
+    },
+    {
+      "component": "core",
+      "version": "1.9.0-rc.1",
+      "tag": "core-v1.9.0-rc.1",
+      "source": "HongdaCore-1.9.0-rc.1-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.9.0-rc.1-Source.zip",
+          "kind": "source",
+          "bytes": 109866,
+          "sha256": "6bae65296c883020ecc8ddfde0a2d0881693f8344ec4d4edbdcba322080726d3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.9.0-rc.1/HongdaCore-1.9.0-rc.1-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.9.0-rc.1-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5934767,
+          "sha256": "d81bd3a0e642541532af3399a7a2e6caa25c48d18f465a47c06d4d1c3f4a5e08",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.9.0-rc.1/HongdaCore-1.9.0-rc.1-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.9.0-rc.1"
+    },
+    {
+      "component": "core",
+      "version": "1.10.0",
+      "tag": "core-v1.10.0",
+      "source": "HongdaCore-1.10.0-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.0-Source.zip",
+          "kind": "source",
+          "bytes": 128671,
+          "sha256": "0ab21f95cbf88198c67d9ad26caba97a1b439b9548d8c961ca39712ac9d25d36",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.0/HongdaCore-1.10.0-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.0-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5972036,
+          "sha256": "5d19462536fae632feda08818b5963acb7f4ae5334e0ce745206035589d7c660",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.0/HongdaCore-1.10.0-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.0"
+    },
+    {
+      "component": "core",
+      "version": "1.10.2",
+      "tag": "core-v1.10.2",
+      "source": "HongdaCore-1.10.2-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.2-Source.zip",
+          "kind": "source",
+          "bytes": 131078,
+          "sha256": "f6698c247afb75f1f63dbbee82dd6a7ca98475747b9de0317eda2fb1566731c2",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.2/HongdaCore-1.10.2-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.2-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5854127,
+          "sha256": "8b6ddafe9645d33b5efcf7d2f940f38d2f59a5d71e0b85618ab77bfe34ad08f3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.2/HongdaCore-1.10.2-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.2"
+    },
+    {
+      "component": "core",
+      "version": "1.10.3",
+      "tag": "core-v1.10.3",
+      "source": "HongdaCore-1.10.3-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.3-Source.zip",
+          "kind": "source",
+          "bytes": 133663,
+          "sha256": "62008130600938e10d94e321f956861ab94009069323c9f8ceb24b14f2f99ef7",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.3/HongdaCore-1.10.3-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.3-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5861459,
+          "sha256": "9e188086674e8008790068fe28c7ec49ebaf1e1fdd306267a2689e80cf89653d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.3/HongdaCore-1.10.3-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.3"
+    },
+    {
+      "component": "core",
+      "version": "1.10.4",
+      "tag": "core-v1.10.4",
+      "source": "HongdaCore-1.10.4-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.4-Source.zip",
+          "kind": "source",
+          "bytes": 134500,
+          "sha256": "82c90540a55029ee878a8dd807f78118e054b8e7db1ae60363135fa9d0b0a8ae",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.4/HongdaCore-1.10.4-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.4-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5863239,
+          "sha256": "3356dd01b457a0fa8971f2252f5a3690f66b2b03496e6f62287bed33e260b762",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.4/HongdaCore-1.10.4-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.4"
+    },
+    {
+      "component": "core",
+      "version": "1.10.5",
+      "tag": "core-v1.10.5",
+      "source": "HongdaCore-1.10.5-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.5-Source.zip",
+          "kind": "source",
+          "bytes": 134978,
+          "sha256": "2484d5972b2e7ffc36ed641fcf68e1b259d760af14fc7e81f00a6e29ffe0b144",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.5/HongdaCore-1.10.5-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.5-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5864208,
+          "sha256": "938709aad830a0d7a6dc6775aed3468bb06618c90fd0982f01cb4a54002eccf5",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.5/HongdaCore-1.10.5-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.5"
+    },
+    {
+      "component": "core",
+      "version": "1.10.6",
+      "tag": "core-v1.10.6",
+      "source": "HongdaCore-1.10.6-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.6-Source.zip",
+          "kind": "source",
+          "bytes": 140397,
+          "sha256": "c484778834c4ea0dcd9bbea9f97f553991ef86bf23ba3e6ef001610b32ee9cb2",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.6/HongdaCore-1.10.6-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.6-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6002670,
+          "sha256": "5dbd5bff30b0f098fcc725b1dfc09c9b99010873a1bf68865de357a496a89e1e",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.6/HongdaCore-1.10.6-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.6"
+    },
+    {
+      "component": "core",
+      "version": "1.10.7",
+      "tag": "core-v1.10.7",
+      "source": "HongdaCore-1.10.7-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.7-Source.zip",
+          "kind": "source",
+          "bytes": 142291,
+          "sha256": "def91bb2b9f481636e5758a5ae1011b5e38fd2a56b6aca841f55537d7eeeff06",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.7/HongdaCore-1.10.7-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.7-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6004580,
+          "sha256": "a18c1df4c62aa10ee2b8507ff9e94df94829b235da292d2cbaa938ba4f106834",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.7/HongdaCore-1.10.7-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.7"
+    },
+    {
+      "component": "core",
+      "version": "1.10.8",
+      "tag": "core-v1.10.8",
+      "source": "HongdaCore-1.10.8-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.8-Source.zip",
+          "kind": "source",
+          "bytes": 141806,
+          "sha256": "d4bc3a362d4baabc6c0ce35a32289a7d25cb232531ed5c2489cc0f1f83b742fa",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.8/HongdaCore-1.10.8-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.8-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5879713,
+          "sha256": "5762d8b66cbe8bada8aa6bcef98368972e261fb904895e4f77e7684a65f5427e",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.8/HongdaCore-1.10.8-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.8"
+    },
+    {
+      "component": "core",
+      "version": "1.10.9",
+      "tag": "core-v1.10.9",
+      "source": "HongdaCore-1.10.9-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.9-Source.zip",
+          "kind": "source",
+          "bytes": 145816,
+          "sha256": "45069568b5b2b7ed8158941d573e32421ac3ff8ca70c4f2d1c6a4a7fd9f5829a",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.9/HongdaCore-1.10.9-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.9-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5886664,
+          "sha256": "1789daa804c8ce17c348ea2e71282c56eb13c29e7d3e325a0558c14da94d95c3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.9/HongdaCore-1.10.9-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.9"
+    },
+    {
+      "component": "core",
+      "version": "1.10.10",
+      "tag": "core-v1.10.10",
+      "source": "HongdaCore-1.10.10-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.10-Source.zip",
+          "kind": "source",
+          "bytes": 147028,
+          "sha256": "03736c65d3ec48057b17bcfeb2e997de3c3bac35f225cc4923d5a5da1bf6a08c",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.10/HongdaCore-1.10.10-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.10-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5887086,
+          "sha256": "d7740c2d42c41940f70d41c236cc2d170694dfd4ff4e97d38144b8e47738fbf5",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.10/HongdaCore-1.10.10-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.10"
+    },
+    {
+      "component": "core",
+      "version": "1.10.11",
+      "tag": "core-v1.10.11",
+      "source": "HongdaCore-1.10.11-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.11-Source.zip",
+          "kind": "source",
+          "bytes": 149409,
+          "sha256": "bc55190183db4d66e32e077608f91319b82c71af4f7360cbd772e5bea6dd1d33",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.11/HongdaCore-1.10.11-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.11-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 5903116,
+          "sha256": "3f98bf2a35e60c230e25238ff698b20cd739869158dff3fa1463ccd0701dff0e",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.11/HongdaCore-1.10.11-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.11"
+    },
+    {
+      "component": "core",
+      "version": "1.10.12",
+      "tag": "core-v1.10.12",
+      "source": "HongdaCore-1.10.12-Source.zip",
+      "assets": [
+        {
+          "name": "HongdaCore-1.10.12-Source.zip",
+          "kind": "source",
+          "bytes": 163262,
+          "sha256": "f75aeae9c61d3f3976093ba1976695fdd957d27509b4acb8098fdfcfead1c6e3",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.12/HongdaCore-1.10.12-Source.zip"
+        },
+        {
+          "name": "HongdaCore-1.10.12-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 6038772,
+          "sha256": "75e97a83d6c5929caa618031eada7e7dd704df4c8483ffb440020a021f3ac59a",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/core-v1.10.12/HongdaCore-1.10.12-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.12"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.4-r2",
+      "tag": "windows-v1.6.4-r2",
+      "source": "Hongda-Starlink-V1.6.4-R2-RegressionFix-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.4-R2-RegressionFix-Source.zip",
+          "kind": "source",
+          "bytes": 42546449,
+          "sha256": "ca7fbd0797f2f80d02a71630d42f0e0e309419ecb2397adafce4c846b3633c2d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.4-r2/Hongda-Starlink-V1.6.4-R2-RegressionFix-Source.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.4-r2"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.5",
+      "tag": "windows-v1.6.5",
+      "source": "Hongda-Starlink-V1.6.5-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.5-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 20847750,
+          "sha256": "01d6c02383da86bbf390a3de7945056c01e2ce831b009165f6e84433c3c21ee9",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.5/Hongda-Starlink-V1.6.5-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.5-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 34714797,
+          "sha256": "5bbbccc6bc7b22e8c0dd3d882d033217f5c9226224be5112114387200f5a82f6",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.5/Hongda-Starlink-V1.6.5-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.5"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.6",
+      "tag": "windows-v1.6.6",
+      "source": "Hongda-Starlink-V1.6.6-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.6-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 21317976,
+          "sha256": "c5bcd41477efea232acabd40d349d1558ec504ec3f141ea76eaa2d0a0391ca9c",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.6/Hongda-Starlink-V1.6.6-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.6-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 34731690,
+          "sha256": "2ff465d93e7e6c6d3c53ac617112a4e58c875658bc311cc25123d1f749feeb16",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.6/Hongda-Starlink-V1.6.6-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.6"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.7",
+      "tag": "windows-v1.6.7",
+      "source": "Hongda-Starlink-V1.6.7-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.7-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 21320940,
+          "sha256": "882ed850bcdb68dfd03e17e15e826df014e44831d918b7a2df2ef7b06e60a567",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.7/Hongda-Starlink-V1.6.7-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.7-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 34739302,
+          "sha256": "690b52795957b35b922c76fb150886a3758ca61c388a99e493363336277fd21a",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.7/Hongda-Starlink-V1.6.7-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.7"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.8",
+      "tag": "windows-v1.6.8",
+      "source": "Hongda-Starlink-V1.6.8-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.8-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 20876403,
+          "sha256": "bac51ee061929db8e0c0627fc0fd50f956815eed73a4a31ba25c4e44b3bf8e88",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.8/Hongda-Starlink-V1.6.8-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.8-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 35007820,
+          "sha256": "fe787d1e1b51af3bf356910fde26342a78cf9a6824f98e875b0f9153d1dc8262",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.8/Hongda-Starlink-V1.6.8-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.8"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.9",
+      "tag": "windows-v1.6.9",
+      "source": "Hongda-Starlink-V1.6.9-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.9-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 441061,
+          "sha256": "47e7831811d718825fe85ed1e6a26d1207b60abf95796fb08635cd227e90099f",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.9/Hongda-Starlink-V1.6.9-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.9-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20697692,
+          "sha256": "19b73cfdca3ca64390a21ea7648d933742441515d22a5cff4f4b44bbabe3886c",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.9/Hongda-Starlink-V1.6.9-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.9"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.10",
+      "tag": "windows-v1.6.10",
+      "source": "Hongda-Starlink-V1.6.10-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.10-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 442425,
+          "sha256": "e461b268172fc8cbf3d5fade695a1315548d2b32634df5b15da99923ef03c910",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.10/Hongda-Starlink-V1.6.10-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.10-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20270746,
+          "sha256": "e92ea061563a72ce6e51731853426e10b0a9070a53bf3d882513f01435449d4d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.10/Hongda-Starlink-V1.6.10-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.10"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.11",
+      "tag": "windows-v1.6.11",
+      "source": "_deprecated/V1.6.11-404/Hongda-Starlink-V1.6.11-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.11-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 445673,
+          "sha256": "8f2ca47cda301d3187980748be14bdbbb6f68775db8860e6f219f831eddb1387",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.11/Hongda-Starlink-V1.6.11-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.11-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20277081,
+          "sha256": "b0f30eb042cdb8b25f6aabefa03857c3021750935e7c1d1fa6c1cc8f512b6504",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.11/Hongda-Starlink-V1.6.11-Windows-x64.zip"
+        }
+      ],
+      "known_issue": "规则集 karing-openai 下载 404，保留供回溯，不建议使用",
+      "prerelease": true,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.11"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.12",
+      "tag": "windows-v1.6.12",
+      "source": "Hongda-Starlink-V1.6.12-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.12-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 446226,
+          "sha256": "47b4c4dbf60cff3abb500ee28f7f374b65f46da79085bdd09ff1165ccf8edbab",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.12/Hongda-Starlink-V1.6.12-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.12-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20277475,
+          "sha256": "59b1287060327b3ab8ebaf5d0b7fc0d44e9ca47302b2ee4796a909dcdc54c803",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.12/Hongda-Starlink-V1.6.12-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.12"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.13",
+      "tag": "windows-v1.6.13",
+      "source": "Hongda-Starlink-V1.6.13-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.13-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 451942,
+          "sha256": "498ae7c2a8d6c6c024870841f4d4a7df55c9c6b3f74a673437e8e2a1ea484ca7",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.13/Hongda-Starlink-V1.6.13-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.13-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20288584,
+          "sha256": "a3f1114811fe9f6ab561eefcc473b322d1354579ded9e42f1870dce5775a7348",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.13/Hongda-Starlink-V1.6.13-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.13"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.14",
+      "tag": "windows-v1.6.14",
+      "source": "Hongda-Starlink-V1.6.14-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.14-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 453112,
+          "sha256": "54cc1c793bf77a7aac6a6271e903114805598d2bc7a7941d1874c4258d37229b",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.14/Hongda-Starlink-V1.6.14-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.14-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20289391,
+          "sha256": "81769f985b72c9de739ce71b1c3fdff76232159aacf86fc979a97db5d5a91ea9",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.14/Hongda-Starlink-V1.6.14-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.14"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.15",
+      "tag": "windows-v1.6.15",
+      "source": "Hongda-Starlink-V1.6.15-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.15-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 459504,
+          "sha256": "1e79f99635af7b478debd0d292541fc748753441a723214ff66d952524a6ecba",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.15/Hongda-Starlink-V1.6.15-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.15-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20314583,
+          "sha256": "a223a13cb9711dcb9c2f70d9df02583790a7b483c662cb605735b8ffada2053c",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.15/Hongda-Starlink-V1.6.15-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.15"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.16",
+      "tag": "windows-v1.6.16",
+      "source": "Hongda-Starlink-V1.6.16-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.16-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 460882,
+          "sha256": "be19bab8dab4fabe4cb4c292d191037c454dc8fa199ae281b26bd6440801ec1d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.16/Hongda-Starlink-V1.6.16-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.16-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20326346,
+          "sha256": "c1604b894ee97bdf3cc00256fa4e5cd265ef3de11b3332f2d7772871d0ce0acf",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.16/Hongda-Starlink-V1.6.16-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.16"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.17",
+      "tag": "windows-v1.6.17",
+      "source": "Hongda-Starlink-V1.6.17-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.17-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 463629,
+          "sha256": "cc51843219e1eecbe4e689c8f3bfa76a15fa0ece08ae0e9252b7c060e98cba3b",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.17/Hongda-Starlink-V1.6.17-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.17-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20327778,
+          "sha256": "25991daf5e9ce3d6bfed2eb1dd72ffff804b27e50b7bf8af7d1cc85062fa0d93",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.17/Hongda-Starlink-V1.6.17-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.17"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.18",
+      "tag": "windows-v1.6.18",
+      "source": "Hongda-Starlink-V1.6.18-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.18-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 465339,
+          "sha256": "29d3a94a30dac141805d971837e12917c22613e94ba361387d98de0156013c9c",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.18/Hongda-Starlink-V1.6.18-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.18-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20330017,
+          "sha256": "7746efba1687dd0a9ac7383861e92b25b5ddab97ca8a5feff7f33826a2297b79",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.18/Hongda-Starlink-V1.6.18-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.18"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.19",
+      "tag": "windows-v1.6.19",
+      "source": "Hongda-Starlink-V1.6.19-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.19-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 472069,
+          "sha256": "3b86bca7c5f8811eff2a383ceddb85b8c41ca245949e100e5ae386777ed3d349",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.19/Hongda-Starlink-V1.6.19-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.19-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20777026,
+          "sha256": "867cc1f3cb4ebf032bcc9178c1a32b4dc930ee01e7e4316a2898fddcbae685ab",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.19/Hongda-Starlink-V1.6.19-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.19"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.20",
+      "tag": "windows-v1.6.20",
+      "source": "Hongda-Starlink-V1.6.20-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.20-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 476552,
+          "sha256": "76293466c7ec9b34fce0cbdfc1a775b2464ed4c923fc7a59d905e707fa05d37d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.20/Hongda-Starlink-V1.6.20-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.20-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20785273,
+          "sha256": "151bd3bfcab6fa41c87dae6c92e68d291bf2fe673faa519d5a70f27770bf9870",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.20/Hongda-Starlink-V1.6.20-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.20"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.21",
+      "tag": "windows-v1.6.21",
+      "source": "Hongda-Starlink-V1.6.21-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.21-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 479617,
+          "sha256": "5f7bf86498c71f643ceab1f6a45543104243048b521120ee1cf47c000a19fb5d",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.21/Hongda-Starlink-V1.6.21-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.21-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20366432,
+          "sha256": "e2ac6aba31f9dcb3763c90d261f026a853071b2e418b02a344b76919b3d6e9ff",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.21/Hongda-Starlink-V1.6.21-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.21"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.22",
+      "tag": "windows-v1.6.22",
+      "source": "Hongda-Starlink-V1.6.22-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.22-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 488375,
+          "sha256": "041bb37f0f54c53df666648306a2e98fdf6943c1b168712e279802a72fb4c0af",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.22/Hongda-Starlink-V1.6.22-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.22-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20374240,
+          "sha256": "4cf372a6d4efa7af7216f26d87a4919021f58384d1bc355a5ba34769f24aa357",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.22/Hongda-Starlink-V1.6.22-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.22"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.23",
+      "tag": "windows-v1.6.23",
+      "source": "Hongda-Starlink-V1.6.23-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.23-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 492612,
+          "sha256": "183fd5a0a0e47b67837b4085d32285854eb8772b27d6c88d47c29ae9bc9bd472",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.23/Hongda-Starlink-V1.6.23-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.23-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20378147,
+          "sha256": "047738b1384a367051556dc921462542f09d056dc4cf37f6185aa273bcee2586",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.23/Hongda-Starlink-V1.6.23-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.23"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.24",
+      "tag": "windows-v1.6.24",
+      "source": "Hongda-Starlink-V1.6.24-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.24-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 498500,
+          "sha256": "366279431eb4616dd61a57c1fec368cbeee4f93934ae89dc26d07b28aa943b88",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.24/Hongda-Starlink-V1.6.24-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.24-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20396021,
+          "sha256": "8fa7adfca3757b0233975104eeb80bf017b7450572c928f17a41be8f0497a4bf",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.24/Hongda-Starlink-V1.6.24-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.24"
+    },
+    {
+      "component": "windows",
+      "version": "1.6.25",
+      "tag": "windows-v1.6.25",
+      "source": "Hongda-Starlink-V1.6.25-Windows-Source.zip",
+      "assets": [
+        {
+          "name": "Hongda-Starlink-V1.6.25-Windows-Source.zip",
+          "kind": "source",
+          "bytes": 520678,
+          "sha256": "d17b307afd0200f03438e1f60413609f2ea1566fe7d6d04fcbb2aa3cc28cf576",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.25/Hongda-Starlink-V1.6.25-Windows-Source.zip"
+        },
+        {
+          "name": "Hongda-Starlink-V1.6.25-Windows-x64.zip",
+          "kind": "windows-binary",
+          "bytes": 20839756,
+          "sha256": "276cbe43f90ee6dba1431ec399d6b99c6f904ce6901173dac137a2ed128d7b66",
+          "url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/download/windows-v1.6.25/Hongda-Starlink-V1.6.25-Windows-x64.zip"
+        }
+      ],
+      "known_issue": null,
+      "prerelease": false,
+      "release_url": "https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.25"
+    }
+  ]
+}

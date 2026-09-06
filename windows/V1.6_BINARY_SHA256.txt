@@ -1,0 +1,2 @@
+5f6a6927b3ee29d13837ffb137c17bd3d8fd9f6eac9ae40930a7bc4c804898cd  runtime/service/HongdaService.exe
+bb3511d5695c7f52093a2bca5e509b3757b8faeda480ac66b430032bf36ca202  service/embedded/HongdaCore.exe

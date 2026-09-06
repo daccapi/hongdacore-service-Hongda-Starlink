@@ -1,0 +1,45 @@
+Hongda Starlink Android R9 - Karing Compatibility Fix
+
+Build ID: V1.6.4-R2-Android-CoreBridge-R9-KaringCompat-20260813
+
+Why R9 exists
+-------------
+R8 proved that HongdaCore, the Android VpnService, DNS resolution, URLTest and the
+whole-device route all start successfully, but normal third-party application traffic
+could still fail even when tiny in-process HTTP diagnostics passed.
+
+The user supplied karing-main(2).zip for a configuration comparison. The usable
+configuration/settings portions show these important Android choices:
+
+1. Android TUN stack defaults to gvisor (not system).
+2. Android TUN MTU defaults to 4064.
+3. Global IP strategy defaults to ipv4_only.
+4. TUN strict_route defaults false.
+5. TUN DNS handling uses sniff before hijack-dns.
+6. FakeIP is NOT the DNS final/default server. A normal resolver remains final and
+   FakeIP is selected by DNS rules.
+7. Karing's generated service_core sample uses 10.20.0.1/30 for its TUN IPv4 address.
+
+R9 changes
+----------
+* Android only: stack=gvisor. Windows behavior is unchanged.
+* Android only: MTU=4064. Windows behavior is unchanged.
+* Android compatibility mode starts with IPv4-only TUN/DNS strategy. This removes
+  dual-stack ambiguity while the runtime path is being stabilized.
+* Android only: strict_route=false.
+* Android TUN address moved from 172.19.0.1/30 to 10.20.0.1/30.
+* TUN route rules now sniff tun-in first and then hijack protocol=dns.
+* Fixed invalid FakeIP construction: dns.final never points to fakeip.
+* FakeIP is now selected using an A/AAAA DNS rule with TTL rewrite, matching Karing's
+  configuration structure.
+* Added cache_capacity=1024 and a visible runtime log line for the effective profile.
+* R8 GLOBAL all-app capture and physical-network/protect(fd) fixes remain intact.
+
+Test focus
+----------
+Use an already verified VLESS Reality or Hysteria2 node. After connecting, verify the
+log contains:
+  Android 兼容配置：Karing-style · stack=gvisor · MTU=4064 · TUN IPv4-only
+Then test Chrome/YouTube and an IP-check site. If third-party traffic still fails, the
+next useful data is adb logcat for HongdaVpnService/sing-box while opening a page; at
+that point configuration parity has removed the main TUN/DNS differences.
