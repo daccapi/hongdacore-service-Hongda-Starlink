@@ -2,6 +2,7 @@ package route
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"net"
@@ -233,7 +234,11 @@ func (r *Router) dialRouted(network, address, routeAddress string) (net.Conn, er
 	originalAddress := address
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
-	decision, err := r.routeDecision(ctx, network, routeAddress)
+	var destinationIP netip.Addr
+	if host, _, splitErr := net.SplitHostPort(address); splitErr == nil {
+		destinationIP, _ = netip.ParseAddr(host)
+	}
+	decision, err := r.routeDecisionForDestination(ctx, network, routeAddress, destinationIP.Unmap())
 	if err != nil {
 		return nil, err
 	}
@@ -321,13 +326,29 @@ type routeDecisionResult struct {
 }
 
 func (r *Router) routeDecision(ctx context.Context, network, address string) (routeDecisionResult, error) {
+	return r.routeDecisionForDestination(ctx, network, address, netip.Addr{})
+}
+
+// RejectPacket is a non-blocking preflight for an IP-addressed TUN packet.
+// The stack must see rejection before creating a UDP flow in order to send
+// ICMP unreachable; closing a subsequently created flow only drops packets.
+func (r *Router) RejectPacket(network string, destination netip.AddrPort) bool {
+	if !destination.IsValid() {
+		return false
+	}
+	_, err := r.routeDecision(context.Background(), network, destination.String())
+	var rejected ruleReject
+	return errors.As(err, &rejected)
+}
+
+func (r *Router) routeDecisionForDestination(ctx context.Context, network, address string, destinationIP netip.Addr) (routeDecisionResult, error) {
 	host, port, err := net.SplitHostPort(address)
 	if err != nil {
 		host = address
 		port = ""
 	}
 	for index, rule := range r.rules {
-		if !r.matchRule(ctx, rule, network, host, port) {
+		if !r.matchRuleForDestination(ctx, rule, network, host, port, destinationIP) {
 			continue
 		}
 		label := describeRouteRule(index, rule)
@@ -379,6 +400,10 @@ type routedConnection struct {
 }
 
 func (r *Router) matchRule(ctx context.Context, rule model.Rule, network, host, port string) bool {
+	return r.matchRuleForDestination(ctx, rule, network, host, port, netip.Addr{})
+}
+
+func (r *Router) matchRuleForDestination(ctx context.Context, rule model.Rule, network, host, port string, destinationIP netip.Addr) bool {
 	m := rule.Match
 	if m.Network != "" && !strings.EqualFold(m.Network, network) {
 		return false
@@ -390,13 +415,17 @@ func (r *Router) matchRule(ctx context.Context, rule model.Rule, network, host, 
 		// Process matching is not available on the clean-room core yet.
 		return false
 	}
-	return r.matchDestination(ctx, rule, host)
+	return r.matchDestinationForIP(ctx, rule, host, destinationIP)
 }
 
 // The external-format destination fields form one logical group: domain,
 // suffix, keyword, IP CIDR and rule-set references are ORed. Network and port
 // above remain AND constraints.
 func (r *Router) matchDestination(ctx context.Context, rule model.Rule, host string) bool {
+	return r.matchDestinationForIP(ctx, rule, host, netip.Addr{})
+}
+
+func (r *Router) matchDestinationForIP(ctx context.Context, rule model.Rule, host string, destinationIP netip.Addr) bool {
 	m := rule.Match
 	hasAddressMatcher := len(m.Domain) > 0 || len(m.DomainSuffix) > 0 ||
 		len(m.DomainKeyword) > 0 || len(m.IPCIDR) > 0 || len(m.RuleSet) > 0
@@ -422,6 +451,12 @@ func (r *Router) matchDestination(ctx context.Context, rule model.Rule, host str
 	}
 	if r.matchDomain(m, host) {
 		return true
+	}
+	// SNI augments the original destination, it does not replace its IP.
+	// Re-resolving here adds DoH round trips to every new HTTPS stream and
+	// may match a different CDN address from the one actually being dialed.
+	if destinationIP.IsValid() {
+		return r.matchAddress(m, destinationIP)
 	}
 	if rule.Options.NoResolve || !r.hasIPMatchers(m) {
 		return false
@@ -663,20 +698,26 @@ func (r *Router) pipe(client, upstream net.Conn, host, dest, domain, routeTag, o
 
 	done := make(chan struct{}, 2)
 	go func() {
-		_, _ = io.Copy(&countWriter{
+		_, err := io.Copy(&countWriter{
 			Writer:   upstream,
 			counter:  &conn.Upload,
 			addTotal: r.traffic.AddUpload,
 		}, client)
+		if err != nil {
+			conn.Close()
+		}
 		closeWrite(upstream)
 		done <- struct{}{}
 	}()
 	go func() {
-		_, _ = io.Copy(&countWriter{
+		_, err := io.Copy(&countWriter{
 			Writer:   client,
 			counter:  &conn.Download,
 			addTotal: r.traffic.AddDownload,
 		}, upstream)
+		if err != nil {
+			conn.Close()
+		}
 		closeWrite(client)
 		done <- struct{}{}
 	}()

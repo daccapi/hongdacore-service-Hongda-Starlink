@@ -1154,7 +1154,7 @@ class _VersionBadge extends StatelessWidget {
       ],
     ),
     child: const Text(
-      '1.6.25',
+      '1.6.26',
       style: TextStyle(
         color: Colors.white,
         fontSize: 9.5,
@@ -8231,13 +8231,13 @@ class _AboutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 const Text(
-                  'V1.6.25 · Windows x64',
+                  'V1.6.26 · Windows x64',
                   style: TextStyle(color: Color(0xFF667085)),
                 ),
                 const SizedBox(height: 22),
                 Text(
                   coreVersion == null
-                      ? '鸿达星轨智连 Windows 桌面网络连接工具。当前源码包已包含 HongdaService.exe，并内嵌 HongdaCore 1.10.12。'
+                      ? '鸿达星轨智连 Windows 桌面网络连接工具。当前源码包已包含 HongdaService.exe，并内嵌 HongdaCore 1.10.13。'
                       : '鸿达星轨智连 Windows 桌面网络连接工具。内置 HongdaService 与 HongdaCore，支持系统代理、TUN 与智能分流。',
                   textAlign: TextAlign.center,
                   style: const TextStyle(height: 1.6, color: Color(0xFF475467)),

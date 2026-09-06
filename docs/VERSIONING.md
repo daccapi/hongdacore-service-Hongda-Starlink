@@ -1,12 +1,12 @@
 # 版本迭代与归档规范
 
-仓库目录版本：1.0.0（2026-09-05，首次公开分类归档）。不因归档而虚增软件版本。
+仓库目录版本：1.0.1（2026-09-06，增加 Windows 1.6.26 / Core 1.10.13）；首次归档为 1.0.0。软件版本随实际修复迭代。
 
 | 对象 | 规则 | 当前基线 |
 | --- | --- | --- |
-| Windows App | pubspec 的应用版本与构建号；Release tag 为 windows-v版本 | 1.6.25+185 |
-| Service | 与 Core 嵌入关系单独记录，不冒充 App 版本 | 1.5.12 |
-| Windows Core | Core CLI/API 版本；Release tag 为 core-v版本 | 1.10.12 |
+| Windows App | pubspec 的应用版本与构建号；Release tag 为 windows-v版本 | 1.6.26+186 |
+| Service | 与 Core 嵌入关系单独记录，不冒充 App 版本 | 1.5.13 |
+| Windows Core | Core CLI/API 版本；Release tag 为 core-v版本 | 1.10.13 |
 | Android App | 独立迭代；修订 R3–R9 保留原名；tag 为 android-v版本-修订 | 1.6.5+165 / R9 |
 
 1. 修复/新增功能先更新对应代码、测试与 CHANGELOG，再修改对应产品版本号。

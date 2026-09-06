@@ -27,6 +27,9 @@ func (h *handler) JudgeFlow(network uint8, _ netip.AddrPort, destination netip.A
 	if network == 17 && destination.Port() == 53 { // UDP
 		return tun.FlowVerdict{Action: tun.ActionHijackDNS}
 	}
+	if network == 17 && h.router.RejectPacket("udp", destination) {
+		return tun.FlowVerdict{Action: tun.ActionReject}
+	}
 	return tun.FlowVerdict{Action: tun.ActionAccept}
 }
 

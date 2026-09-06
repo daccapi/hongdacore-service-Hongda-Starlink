@@ -156,7 +156,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__andybalholm__brotli@v1.0.6/LICENSE"
@@ -796,7 +798,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__florianl__go-nfqueue__v2@v2.1.0/LICENSE"
@@ -871,7 +875,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__fsnotify__fsnotify@v1.9.0/LICENSE"
@@ -1101,7 +1107,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__go-ole__go-ole@v1.3.0/LICENSE"
@@ -1309,7 +1317,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__google__btree@v1.1.3/LICENSE"
@@ -1362,7 +1372,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__google__go-cmp@v0.7.0/LICENSE"
@@ -1635,7 +1647,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__klauspost__compress@v1.17.4/LICENSE"
@@ -1855,7 +1869,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__mdlayher__netlink@v1.11.2/LICENSE.md"
@@ -1964,7 +1980,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__mdlayher__socket@v0.6.0/LICENSE.md"
@@ -2444,7 +2462,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__quic-go__qpack@v0.6.0/LICENSE.md"
@@ -2491,7 +2511,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__quic-go__quic-go@v0.61.0/LICENSE"
@@ -2544,7 +2566,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__refraction-networking__utls@v1.8.2/LICENSE"
@@ -3917,7 +3941,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__fswatch@v0.1.2/LICENSE"
@@ -4028,7 +4054,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__gvisor@v0.0.0-20260727.0-sing-box-mod.1/AUTHORS",
@@ -4082,7 +4110,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__netlink@v0.0.0-20240612041022-b9a21c07ac6a/LICENSE"
@@ -4169,7 +4199,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__nftables@v0.3.0-mod.4/LICENSE"
@@ -4300,7 +4332,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__sing@v0.8.12-0.20260717023913-84ab32b56cb8/LICENSE"
@@ -4580,7 +4614,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__sagernet__sing-tun@v0.8.12-0.20260810140529-d67734281390/LICENSE"
@@ -5132,7 +5168,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/github.com__vishvananda__netns@v0.0.4/LICENSE"
@@ -5493,7 +5531,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/go4.org__netipx@v0.0.0-20231129151722-fdeea329fbba/AUTHORS",
@@ -5603,7 +5643,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__crypto@v0.54.0/LICENSE"
@@ -5646,7 +5688,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__exp@v0.0.0-20250711185948-6ae5c78190dc/LICENSE"
@@ -5833,7 +5877,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__net@v0.57.0/LICENSE"
@@ -5942,7 +5988,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__sync@v0.22.0/LICENSE"
@@ -6051,7 +6099,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__sys@v0.47.0/LICENSE"
@@ -6204,7 +6254,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__text@v0.40.0/LICENSE"
@@ -6269,7 +6321,9 @@
       "windows-v1.6.23",
       "windows-v1.6.24",
       "windows-v1.6.25",
-      "windows-v1.6.9"
+      "windows-v1.6.9",
+      "windows-v1.6.26",
+      "core-v1.10.13"
     ],
     "notices": [
       "licenses/go-modules/golang.org__x__time@v0.15.0/LICENSE"

@@ -1,5 +1,14 @@
 # 更新记录
 
+## V1.6.26 — 2026-09-06
+
+- 应用 `1.6.26+186`、HongdaService `1.5.13`、HongdaCore `1.10.13`。
+- 修复 TUN 已知目标 IP 被 SNI 替代后重复 DoH 查询及错误 IP 分流。
+- UDP 拒绝在 gVisor 接包阶段返回 ICMP unreachable，避免只丢包引发 QUIC 超时等待。
+- 修复转发读写错误后反方向连接和协程长期挂起。
+- 本地回归及 Core 全套测试/vet 通过；真实 YouTube 速度待用户对比。
+- 详见 V1.6.26_PERFORMANCE_FIX.md。
+
 ## V1.6.25 — 2026-09-05
 
 - 版本：应用 `1.6.25+185`、HongdaService `1.5.12`、HongdaCore `1.10.12`。

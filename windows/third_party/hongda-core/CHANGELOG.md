@@ -1,5 +1,12 @@
 # Hongda Core Changelog
 
+## 1.10.13 — 2026-09-06
+
+- SNI 分流保留原始目标 IP，IP 规则无需重新解析已知地址，避免 CDN 地址漂移及额外 DoH 等待。
+- IP 数据包拒绝策略供 TUN JudgeFlow 使用，由 gVisor 向客户端发送 unreachable。
+- 双向复制发生错误时关闭两端并回收连接记录，避免累积悬挂协程。
+- 增加回环 DNS、IP/SNI 规则优先级、UDP 拒绝和复制错误清理回归测试。
+
 ## 1.10.12 — 2026-09-05
 
 - WS 支持 continuation 帧、握手 context 取消、非法帧/长度限制；gRPC 修复空消息 panic、递归读死锁和重复建链。

@@ -1,7 +1,7 @@
 name: hongda_starlink
 description: 鸿达星轨智连 - Windows HongdaCore desktop client
 publish_to: none
-version: 1.6.25+185
+version: 1.6.26+186
 
 environment:
   sdk: ">=3.12.0 <4.0.0"

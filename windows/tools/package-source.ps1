@@ -5,7 +5,7 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $Root = Split-Path -Parent $PSScriptRoot
-$Version = '1.6.25'
+$Version = '1.6.26'
 if ([string]::IsNullOrWhiteSpace($CoreSource)) {
     $Candidates = @(
         (Join-Path (Split-Path -Parent $Root) 'hongda-core'),

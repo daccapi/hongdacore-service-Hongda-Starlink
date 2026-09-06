@@ -11,7 +11,7 @@ $SiblingCandidates = @(
     (Join-Path (Split-Path -Parent $Root) 'hongda-core'),
     (Join-Path (Split-Path -Parent (Split-Path -Parent $Root)) 'hongda-core')
 )
-$CoreVersion = '1.10.12'
+$CoreVersion = '1.10.13'
 $BuildTags = 'with_gvisor'
 
 if ([string]::IsNullOrWhiteSpace($CoreSource)) {

@@ -1,13 +1,13 @@
-# 鸿达星轨智连 V1.6.25 — Windows 源码
+# 鸿达星轨智连 V1.6.26 — Windows 源码
 
-鸿达星轨智连 Windows 客户端，采用 Flutter 桌面 UI、独立 `HongdaService.exe` 监管进程和本地源码构建的 `HongdaCore.exe`。应用版本为 **1.6.25+185**，Service 版本为 **1.5.12**，核心版本为 **1.10.12**。
+鸿达星轨智连 Windows 客户端，采用 Flutter 桌面 UI、独立 `HongdaService.exe` 监管进程和本地源码构建的 `HongdaCore.exe`。应用版本为 **1.6.26+186**，Service 版本为 **1.5.13**，核心版本为 **1.10.13**。
 
 ## 运行架构
 
 ```text
 Hongda Starlink.exe
-  └─ HongdaService.exe 1.5.12
-       └─ HongdaCore.exe 1.10.12
+  └─ HongdaService.exe 1.5.13
+       └─ HongdaCore.exe 1.10.13
             ├─ VLESS / Reality / Trojan / Hysteria2 / TUIC
             ├─ Wintun / gVisor / DoH / 规则集 / Selector / URLTest
             └─ Clash API: 127.0.0.1:<运行时 API 端口>
@@ -17,7 +17,7 @@ Flutter 负责节点、订阅、配置生成、启动编排、stdio JSONL IPC、
 
 `HongdaCore.exe` 由 `tools/build-core.ps1` 从相邻 `hongda-core` 源码构建，随后作为资源嵌入 `HongdaService.exe`。Core 不导入 sing-box 运行时代码；Windows TUN 使用并保留 sing-tun、gVisor、Wintun 的第三方许可与声明。
 
-## V1.6.25 主要变化
+## V1.6.26 主要变化
 
 - 修复 WebSocket 分片丢数据与握手超时失效、gRPC 空消息死锁/崩溃及重复 TCP 建连。
 - Hysteria2/TUIC 的 TCP 复用会话失效后重新建立；并发请求共享建链，避免重复 QUIC 握手。
@@ -28,7 +28,7 @@ Flutter 负责节点、订阅、配置生成、启动编排、stdio JSONL IPC、
 - 修复 TUN HTTPS 巡检失败被下一次单纯路由检查误报恢复；无效 UUID、地址、端口、密码节点会被隔离。
 
 本轮不改变现有分流策略、TUN 系统路由或用户设置，不升级第三方依赖。
-详细记录见 [V1.6.25_RELIABILITY_FIX.md](V1.6.25_RELIABILITY_FIX.md)。
+详细记录见 [V1.6.26_PERFORMANCE_FIX.md](V1.6.26_PERFORMANCE_FIX.md)。
 
 ## V1.6.24 主要变化
 

@@ -1,7 +1,7 @@
 $ErrorActionPreference = 'Stop'
 $root = (Get-Location).Path
 $parent = Split-Path -Parent $root
-$ver = '1.10.12'
+$ver = '1.10.13'
 
 & (Join-Path $root 'build-windows.ps1') -Output (Join-Path $root 'dist\HongdaCore.exe')
 

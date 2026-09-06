@@ -10,7 +10,7 @@ Windows TUN 使用公开的 `sing-tun`、gVisor 与 Wintun 组件，并在
 
 ## 架构
 
-当前版本：**1.10.12**。本轮修复协议连接恢复、DNS 缓存/切换和测速健康判断，
+当前版本：**1.10.13**。本轮修复 TUN SNI 重复 DNS、UDP 拒绝信号和异常转发清理；此前包含协议连接恢复、DNS 缓存/切换和测速健康判断，
 详见 [CHANGELOG.md](CHANGELOG.md)。不改变现有 TUN 路由策略。
 
 ```text

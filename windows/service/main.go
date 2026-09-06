@@ -27,8 +27,8 @@ import (
 )
 
 const (
-	serviceVersion = "1.5.12"
-	coreVersion    = "1.10.12"
+	serviceVersion = "1.5.13"
+	coreVersion    = "1.10.13"
 )
 
 const featureSummary = "direct,vless,trojan,hysteria2,hysteria2-salamander,tuic,reality,utls,ws,grpc,vless-vision,vless-xudp,rules,remote-rule-set,rule-set-cache,rule-set-fallback,rule-set-offline-start,rule-set-prefix-trie,doh,doh-keepalive,dns-hijack,tcp-dns-hijack,dns-rule-reject,dns-route-cache,dns-query-cache,dns-cache-persistent,dns-cache-dpapi,tls-sni-sniff,udp-associate,udp-proxy,mixed,socks5,http-connect,tun,wintun,gvisor,strict-route,tun-restart-recovery,interface-bind,clash-api,loopback-api,connection-log,connection-log-delta,connection-stream,urltest-tolerance,delay-phase-metrics,dns-selector-refresh,dns-ttl-aging,quic-session-recovery,bounded-urltest"

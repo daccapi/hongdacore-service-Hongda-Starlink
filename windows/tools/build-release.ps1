@@ -40,7 +40,7 @@ New-Item -ItemType Directory -Force -Path $ReleaseServiceDir | Out-Null
 Copy-Item -LiteralPath $ServiceExe -Destination (Join-Path $ReleaseServiceDir 'HongdaService.exe') -Force
 Copy-Item -LiteralPath (Join-Path $Root 'README.md') -Destination (Join-Path $ReleaseDir 'README.md') -Force
 Copy-Item -LiteralPath (Join-Path $Root 'CHANGELOG.md') -Destination (Join-Path $ReleaseDir 'CHANGELOG.md') -Force
-Copy-Item -LiteralPath (Join-Path $Root 'V1.6.25_RELIABILITY_FIX.md') -Destination $ReleaseDir -Force
+Copy-Item -LiteralPath (Join-Path $Root 'V1.6.26_PERFORMANCE_FIX.md') -Destination $ReleaseDir -Force
 $NoticeItems = @('NOTICE.md', 'GPL-3.0.txt', 'Wintun-prebuilt-LICENSE.txt')
 foreach ($NoticeName in $NoticeItems) {
     $Notice = Join-Path $RuntimeService $NoticeName
@@ -78,7 +78,7 @@ Write-Host "Service size: $([math]::Round($serviceSize / 1MB, 2)) MB"
 
 if (-not $NoZip) {
     $DistDir = Split-Path -Parent $Root
-    $DistZip = Join-Path $DistDir 'Hongda-Starlink-V1.6.25-Windows-x64.zip'
+    $DistZip = Join-Path $DistDir 'Hongda-Starlink-V1.6.26-Windows-x64.zip'
     New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
     if (Test-Path -LiteralPath $DistZip) { Remove-Item -LiteralPath $DistZip -Force }
     Compress-Archive -Path (Join-Path $ReleaseDir '*') -DestinationPath $DistZip -CompressionLevel Optimal -Force

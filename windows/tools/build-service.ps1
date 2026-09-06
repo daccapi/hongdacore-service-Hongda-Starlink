@@ -55,4 +55,4 @@ if ($size -lt 8MB) {
 }
 Write-Host "HongdaService built: $Output"
 Write-Host "Size: $([math]::Round($size / 1MB, 2)) MB"
-Write-Host 'Core: HongdaCore 1.10.12 (locally built Windows amd64 binary)'
+Write-Host 'Core: HongdaCore 1.10.13 (locally built Windows amd64 binary)'

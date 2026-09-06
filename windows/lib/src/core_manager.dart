@@ -13,8 +13,8 @@ class CoreManager {
 
   final AppStorage storage;
 
-  static const String version = '1.10.12';
-  static const String serviceVersion = '1.5.12';
+  static const String version = '1.10.13';
+  static const String serviceVersion = '1.5.13';
 
   Future<String?> findCore() async {
     final exeDir = File(Platform.resolvedExecutable).parent;

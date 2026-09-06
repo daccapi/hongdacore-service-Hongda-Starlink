@@ -6,11 +6,11 @@ Windows / Android 客户端、HongdaService 与 HongdaCore 的源码和历史发
 
 | 产品 | 当前源码基线 | 历代源码及程序 |
 | --- | --- | --- |
-| Windows 客户端 | [V1.6.25](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.25) · Service 1.5.12 · Core 1.10.12 | [Windows 版本目录](releases/windows.md) |
+| Windows 客户端 | [V1.6.26](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.26) · Service 1.5.13 · Core 1.10.13 | [Windows 版本目录](releases/windows.md) |
 | Android 客户端 | [V1.6.5 / R9](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.5) · arm64 测试 APK | [Android 版本目录](releases/android.md) |
-| Windows HongdaCore | [1.10.12](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.12) | [Core 版本目录](releases/core.md) |
+| Windows HongdaCore | [1.10.13](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.13) | [Core 版本目录](releases/core.md) |
 
-本次归档收录 **57 个已有版本、103 个原始附件**。历史 ZIP/APK 放在 GitHub Releases，
+本次归档收录 **59 个软件版本、107 个软件附件**。历史 ZIP/APK 放在 GitHub Releases，
 不把大体积安装包放进 Git。完整下载链接、大小和 SHA-256 见 [机器可读索引](releases/index.json)。
 归档日期不等于原始发布日期；没有找到的程序包不会补写成“已发布”。
 
@@ -40,7 +40,7 @@ Android 在 `android/` 执行 `tools/build-android-release.ps1`；需要 SDK、N
 Git 中不提交 AAR、EXE、APK、签名私钥或运行配置。历史源码附件可能包含原有预编译组件，
 它们与原包保持一致；从 Git 构建时请按脚本重建。
 
-参见 [构建指南](docs/BUILD.md)、[Windows 修复记录](windows/V1.6.25_RELIABILITY_FIX.md)
+参见 [构建指南](docs/BUILD.md)、[Windows 修复记录](windows/V1.6.26_PERFORMANCE_FIX.md)
 和 [版本管理规则](docs/VERSIONING.md)。
 
 ## 许可证与来源
