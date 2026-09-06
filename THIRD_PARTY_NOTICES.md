@@ -21,7 +21,7 @@
 - Android 派生的 sing-box 源码和构建修改在其历史源码包内，当前基线另见 `android/core/sing-box/`。
 - 上游 Go 模块按实际 go.mod 版本收集，许可和作者声明位于 `licenses/go-modules/`；
   [依赖索引](licenses/dependencies.json) 列出模块版本、源码校验值和适用版本。
-- 补充依赖源码归档见 [依赖源码 Release](https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/dependencies-2026-09-05)。
+- 补充依赖源码归档见 [依赖源码 Release](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/dependencies-2026-09-05)。
 - Wintun 预编译许可见 `hongda-core/licenses/Wintun-prebuilt-LICENSE.txt`；不得删除或修改驱动中的版权标记。
 - 早期 libcronet/Chromium 相关组件须保留各自原始许可。依赖源码中的 cronet-go 构建来源与旧包的版本信息用于追溯，不能用项目 GPL 声明覆盖其全部依赖。
 

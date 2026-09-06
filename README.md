@@ -6,9 +6,9 @@ Windows / Android 客户端、HongdaService 与 HongdaCore 的源码和历史发
 
 | 产品 | 当前源码基线 | 历代源码及程序 |
 | --- | --- | --- |
-| Windows 客户端 | [V1.6.25](https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.25) · Service 1.5.12 · Core 1.10.12 | [Windows 版本目录](releases/windows.md) |
-| Android 客户端 | [V1.6.5 / R9](https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.5) · arm64 测试 APK | [Android 版本目录](releases/android.md) |
-| Windows HongdaCore | [1.10.12](https://github.com/li519582271-coder/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.12) | [Core 版本目录](releases/core.md) |
+| Windows 客户端 | [V1.6.25](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/windows-v1.6.25) · Service 1.5.12 · Core 1.10.12 | [Windows 版本目录](releases/windows.md) |
+| Android 客户端 | [V1.6.5 / R9](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/android-v1.6.5) · arm64 测试 APK | [Android 版本目录](releases/android.md) |
+| Windows HongdaCore | [1.10.12](https://github.com/daccapi/hongdacore-service-Hongda-Starlink/releases/tag/core-v1.10.12) | [Core 版本目录](releases/core.md) |
 
 本次归档收录 **57 个已有版本、103 个原始附件**。历史 ZIP/APK 放在 GitHub Releases，
 不把大体积安装包放进 Git。完整下载链接、大小和 SHA-256 见 [机器可读索引](releases/index.json)。
